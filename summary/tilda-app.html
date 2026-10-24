@@ -13,7 +13,7 @@
 .psk-dash h1, .psk-dash h2, .psk-dash p, .psk-dash ul { margin: 0; }
 .psk-dash .dash-skeleton { color: transparent; background: var(--cds-chart-grid); border-radius: 6px; }
 .psk-dash #psk-updated { font-size: 12.5px; color: var(--color-fg-muted); }
-.psk-dash #deal-table th:first-child, .psk-dash #deal-table td:first-child { display: none; }
+
 </style>
 
 <style>
@@ -34,6 +34,7 @@
 .px-btn:hover { color: var(--color-fg); }
 .px-sec { display: grid; gap: var(--cds-gap-md); }
 .px-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.px-h3 { font-size: var(--cds-font-size-body, 1rem); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-m, 12px) 0 0; }
 .px-sub { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; max-width: 95ch; }
 .px-tiles { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); }
 .px-tile, .px-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
@@ -107,7 +108,57 @@
 .px-tabs button[aria-selected=true] { color: var(--color-fg); border-bottom-color: var(--px-ad); }
 .px-tabs button:focus-visible { outline: 2px solid var(--cds-chart-reference); }
 .px-tab { display: grid; gap: var(--cds-gap-xl); }
-.px-tab[hidden] { display: none !important; }
+.px-tab[hidden], .px-sec[hidden] { display: none !important; }
+.px-dsum { display: grid; gap: var(--cds-gap-md); grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+@media (max-width: 900px) { .px-dsum { grid-template-columns: 1fr; } }
+.px-bigs { display: flex; flex-wrap: wrap; gap: 6px 28px; }
+.px-bigs div { display: grid; }
+.px-bigs b { font-size: 26px; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.px-bigs span { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.px-sbar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 2px; background: var(--cds-chart-grid); }
+.px-sbar i { display: block; height: 100%; min-width: 2px; }
+.px-sleg { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.px-sleg i, .px-gleg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.px-mrow { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 9px 0; border-top: 1px solid var(--color-border-line); align-items: baseline; }
+.px-mrow:first-child { border-top: 0; padding-top: 2px; }
+.px-mrow span { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.px-mrow b { font-size: 18px; font-weight: 650; letter-spacing: -.01em; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.px-mrow small { grid-column: 1 / -1; color: var(--color-fg-muted); font-size: 11.5px; }
+.px-seg-s button { font-size: var(--cds-font-size-caption); padding: 4px 12px; }
+.px-ms { position: relative; }
+.px-ms > summary { list-style: none; cursor: pointer; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 20px !important; position: relative; }
+.px-ms > summary::-webkit-details-marker { display: none; }
+.px-ms > summary::after { content: ""; position: absolute; right: 8px; top: 50%; width: 5px; height: 5px; border-right: 1.5px solid var(--color-fg-muted); border-bottom: 1.5px solid var(--color-fg-muted); transform: translateY(-70%) rotate(45deg); }
+.px-ms-pop { position: absolute; z-index: 30; top: calc(100% + 4px); left: 0; min-width: 13rem; max-width: 22rem; max-height: 18rem; overflow: auto; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, .12); padding: 4px; display: grid; text-align: left; font-weight: 400; }
+th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
+.px-ms-pop label { display: flex; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 5px; cursor: pointer; white-space: normal; font-size: var(--cds-font-size-caption); color: var(--color-fg); }
+.px-ms-pop label:hover { background: var(--cds-chart-grid); }
+.px-ms-pop label.all { border-bottom: 1px solid var(--color-border-line); border-radius: 5px 5px 0 0; margin-bottom: 2px; font-weight: var(--cds-font-weight-medium); }
+.px-ms-pop input { margin: 0; accent-color: var(--px-ad); }
+.px-tbl .px-ms.on > summary { border-color: var(--px-ad); box-shadow: 0 0 0 1px var(--px-ad); color: var(--px-ad); }
+.px-exp { font: inherit; border: 0; background: none; cursor: pointer; color: var(--color-fg-muted); width: 22px; height: 22px; border-radius: 5px; padding: 0; margin-right: 4px; line-height: 1; transition: transform .15s; vertical-align: middle; }
+.px-exp:hover { background: var(--cds-chart-grid); color: var(--color-fg); }
+.px-exp[aria-expanded=true] { transform: rotate(90deg); }
+.px-exp-sp { display: inline-block; width: 26px; }
+.px-tbl .px-who { font-weight: var(--cds-font-weight-medium); }
+.px-tbl tr.px-kid td { background: color-mix(in srgb, var(--cds-chart-grid) 70%, var(--color-panel)); color: var(--color-fg-muted); }
+.px-tbl tr.px-kid td:first-child { box-shadow: inset 3px 0 0 var(--px-ad); padding-left: 36px; }
+.px-cnt { display: inline-block; min-width: 22px; padding: 0 7px; border-radius: 999px; background: color-mix(in srgb, var(--px-ad) 16%, transparent); color: var(--px-ad); font-weight: 600; text-align: center; }
+.px-gv { display: grid; gap: var(--cds-gap-md); }
+.px-gleg { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.px-gbars { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 10px 14px; align-items: center; }
+.px-gbars > span { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.px-gbar { display: flex; height: 26px; border-radius: 6px; overflow: hidden; gap: 2px; background: var(--cds-chart-grid); }
+.px-gbar i { display: flex; align-items: center; justify-content: center; height: 100%; font-style: normal; font-size: 11.5px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; min-width: 2px; }
+.px-gcards { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); }
+.px-gcard { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 12px 14px; display: grid; gap: 4px; border-top: 4px solid var(--px-gc); }
+.px-gcard .t { font-weight: var(--cds-font-weight-medium); }
+.px-gcard .b { font-size: 24px; font-weight: 650; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.px-gcard dl { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; margin: 4px 0 0; font-size: var(--cds-font-size-caption); }
+.px-gcard dt { color: var(--color-fg-muted); }
+.px-gcard dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; font-weight: var(--cds-font-weight-medium); }
+.px-gcard dd.px-good, .px-gcard dd.px-bad { font-weight: 700; }
+
 .px-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .px-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; }
 .px-legend .lp { background: color-mix(in srgb, var(--color-ok) 35%, transparent); border: 1px solid var(--color-ok); }
@@ -133,10 +184,11 @@
   <header class="px-head">
     <p id="psk-updated">Загружаю данные…</p>
     <div class="px-bar" id="view-bar">
-      <div class="px-seg" role="group" aria-label="Вид данных">
-        <button type="button" id="v-all" data-v="С брокерами">Все сделки</button>
-        <button type="button" id="v-nb" data-v="Без брокеров">Без брокеров</button>
-        <button type="button" id="v-br" data-v="Только брокеры">Только брокеры</button>
+      <div class="px-seg" role="group" aria-label="Раздел" id="tab-bar">
+        <button type="button" data-tab="all">Все сделки</button>
+        <button type="button" data-tab="digital">Digital</button>
+        <button type="button" data-tab="brokers">Брокеры</button>
+        <button type="button" data-tab="offline">Оффлайн</button>
       </div>
       <span class="px-viewnote" id="view-note"></span>
     </div>
@@ -161,10 +213,6 @@
       <label for="px-to">по <input class="px-in" id="px-to" type="date" min="2026-01-01" max="2026-12-31" data-source="daily"></label>
       <label for="px-project">Проект <select class="px-in" id="px-project" data-source="summary"></select></label>
       <button class="px-btn" id="px-reset" type="button">Сбросить</button>
-    </div>
-    <div class="px-tabs" role="tablist" aria-label="Разделы">
-      <button type="button" role="tab" id="tab-btn-main" data-tab="main">Общая сводка</button>
-      <button type="button" role="tab" id="tab-btn-inet" data-tab="inet">Интернет</button>
     </div>
   </header>
 
@@ -270,9 +318,14 @@
 
   <section class="px-sec" id="deals">
     <h2 class="px-h2">Договоры</h2>
-    <p class="px-sub">Фильтры под заголовками колонок работают вместе с периодом и проектом вверху страницы. ИТОГО внизу пересчитывается под отобранные договоры.</p>
+    <p class="px-sub">Подписанные договоры за выбранный период. «По клиентам» собирает договоры одного человека в одну строку (обезличенный ключ контакта), стрелка раскрывает все его договоры. В фильтрах под заголовками можно отметить несколько значений, итоги пересчитываются под отобранное.</p>
+    <div class="px-dsum">
+      <div class="px-card"><span class="px-card-t">Результат</span><div id="dl-res" data-source="deals"></div></div>
+      <div class="px-card"><span class="px-card-t">Деньги и путь клиента</span><div id="dl-mon" data-source="deals"></div></div>
+    </div>
     <div class="px-tcard">
       <div class="px-ttools">
+        <div class="px-seg px-seg-s" role="group" aria-label="Вид таблицы"><button type="button" id="dl-vc" data-v="c">По клиентам</button><button type="button" id="dl-vd" data-v="d">Все договоры</button></div>
         <span class="px-note" id="deal-count"></span>
         <button class="px-btn" id="deal-clear" type="button">Сбросить фильтры колонок</button>
       </div>
@@ -280,37 +333,33 @@
         <table class="px-tbl" id="deal-table" data-source="deals" data-row-key="view,deal_id">
           <thead>
             <tr class="h">
-              <th class="l" data-field="deal_id"><button type="button" data-k="deal_id">Сделка</button></th>
-              <th class="l" data-field="project"><button type="button" data-k="project">Проект</button></th>
-              <th data-field="sign_date"><button type="button" data-k="sign_date">Дата подписания</button></th>
-              <th data-field="amount"><button type="button" data-k="amount">Сумма</button></th>
-              <th class="gs" data-field="hold_days"><button type="button" data-k="hold_days">Холд, дн.</button></th>
-              <th data-field="touches"><button type="button" data-k="touches">Касаний</button></th>
-              <th data-field="ad_touches"><button type="button" data-k="ad_touches">Рекламных</button></th>
-              <th class="l gs" data-field="channels"><button type="button" data-k="channels">Цепочка каналов</button></th>
-              <th class="l" data-field="lead_source"><button type="button" data-k="lead_source">Источник в CRM</button></th>
-              <th class="l" data-field="status"><button type="button" data-k="status">Статус</button></th>
+              <th class="l"><button type="button" data-k="client_n" id="dl-h0">Клиент</button></th>
+              <th class="l"><button type="button" data-k="project">Проект</button></th>
+              <th><button type="button" data-k="n" id="dl-h2">Договоров</button></th>
+              <th><button type="button" data-k="sign_date">Дата подписания</button></th>
+              <th><button type="button" data-k="amount">Сумма</button></th>
+              <th class="gs"><button type="button" data-k="hold_days">Холд, дн.</button></th>
+              <th><button type="button" data-k="touches">Касаний</button></th>
+              <th><button type="button" data-k="ad_touches">Рекламных</button></th>
+              <th class="l gs"><button type="button" data-k="channels">Цепочка каналов</button></th>
+              <th class="l"><button type="button" data-k="lead_source">Источник в CRM</button></th>
+              <th class="l"><button type="button" data-k="status">Статус</button></th>
             </tr>
             <tr class="f">
-              <th class="l"><input class="px-fin" id="flt-id" type="search" placeholder="№" aria-label="Фильтр по номеру сделки"></th>
-              <th class="l"><select class="px-fin" id="flt-project" aria-label="Фильтр по проекту"></select></th>
-              <th><div class="px-fdates">
-                <input class="px-fin" id="flt-from" type="date" min="2026-01-01" max="2026-10-31" aria-label="Подписан с">
-                <input class="px-fin" id="flt-to" type="date" min="2026-01-01" max="2026-10-31" aria-label="Подписан по">
-              </div></th>
-              <th><select class="px-fin" id="flt-amount" aria-label="Фильтр по сумме">
-                <option value="">Любая</option><option value="0-5">до 5 млн</option><option value="5-10">5–10 млн</option><option value="10-20">10–20 млн</option><option value="20-1e12">от 20 млн</option>
-              </select></th>
-              <th class="gs"><select class="px-fin" id="flt-hold" aria-label="Фильтр по холду">
-                <option value="">Любой</option><option value="0-30">до 30 дн.</option><option value="31-90">31–90 дн.</option><option value="91-365">91–365 дн.</option><option value="366-1e9">больше года</option><option value="none">нет касаний</option>
-              </select></th>
+              <th class="l"><input class="px-fin" id="flt-id" type="search" placeholder="№ сделки" aria-label="Фильтр по номеру сделки"></th>
+              <th class="l"><details class="px-ms" id="flt-project" data-all="Все проекты"><summary class="px-fin">Все проекты</summary><div class="px-ms-pop"></div></details></th>
               <th></th>
-              <th><select class="px-fin" id="flt-ad" aria-label="Фильтр по рекламным касаниям">
-                <option value="">Все</option><option value="yes">есть реклама</option><option value="no">без рекламы</option>
-              </select></th>
-              <th class="l gs"><select class="px-fin" id="flt-channel" aria-label="Фильтр по каналу в цепочке"></select></th>
-              <th class="l"><select class="px-fin" id="flt-source" aria-label="Фильтр по источнику в CRM"></select></th>
-              <th class="l"><select class="px-fin" id="flt-status" aria-label="Фильтр по статусу"></select></th>
+              <th><div class="px-fdates">
+                <input class="px-fin" id="flt-from" type="date" min="2026-01-01" max="2026-12-31" aria-label="Подписан с">
+                <input class="px-fin" id="flt-to" type="date" min="2026-01-01" max="2026-12-31" aria-label="Подписан по">
+              </div></th>
+              <th><details class="px-ms" id="flt-amount" data-all="Любая"><summary class="px-fin">Любая</summary><div class="px-ms-pop"></div></details></th>
+              <th class="gs"><details class="px-ms" id="flt-hold" data-all="Любой"><summary class="px-fin">Любой</summary><div class="px-ms-pop"></div></details></th>
+              <th></th>
+              <th><details class="px-ms" id="flt-ad" data-all="Все"><summary class="px-fin">Все</summary><div class="px-ms-pop"></div></details></th>
+              <th class="l gs"><details class="px-ms" id="flt-channel" data-all="Любой канал"><summary class="px-fin">Любой канал</summary><div class="px-ms-pop"></div></details></th>
+              <th class="l"><details class="px-ms" id="flt-source" data-all="Любой"><summary class="px-fin">Любой</summary><div class="px-ms-pop"></div></details></th>
+              <th class="l"><details class="px-ms" id="flt-status" data-all="Любой"><summary class="px-fin">Любой</summary><div class="px-ms-pop"></div></details></th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -333,7 +382,7 @@
     </div>
     <p class="px-sub" id="ch-cnote" style="color: var(--color-warn)"></p>
     <p class="px-sub" id="ch-brnote" hidden>«Только брокеры»: каналы посчитаны прямо по брокерским договорам — каждому каналу его доля в цепочке договора (модель «Линейная с post-view», другие модели для этого вида недоступны). Обращения и бюджет интернета на брокерские и прямые сделки не делятся, поэтому там прочерки; бюджет показан только у канала «Брокеры/Агенты».</p>
-    <div class="px-tiles" id="grp-tiles" data-source="channels"></div>
+    <div class="px-card px-gv" id="grp-tiles" data-source="channels"></div>
     <div class="px-legend"><span><i class="lp"></i>лучше ИТОГО больше чем на 10 %</span><span><i class="ln"></i>хуже ИТОГО больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROAS, ROI. Ниже — лучше: ДРР, CPO, CAC, цена целевого.</span></div>
 
     <div class="px-tcard">
@@ -367,17 +416,19 @@
     <h2 class="px-h2">Как считалось</h2>
     <ul class="px-meth">
       <li>Источник: API Smartis, метрики, настроенные в кабинете ПСК. Обращения: «Все обращения CRM». Целевые: «Целевой (период создания)». Договоры и сумма: «Договор подписан» и «Сумма договор подписан» на дату подписания. Бюджет: «Бюджет факт с НДС и АК».</li>
+      <li>Модели атрибуции на странице. Итоги («Результат», «По проектам», дневные данные для произвольного периода) — суммы по всем каналам, от модели не зависят; в Smartis они запрошены с моделью «Последнее касание» и окном 90 дней. Холд, касания, цепочки и список договоров — «Линейная с post-view», окно без ограничения. Таблица каналов — модель на выбор: «Последнее касание», «Первое касание», «Линейная» с окном 90 дней или «Линейная с post-view» без ограничения окна. Вкладка «Интернет» целиком — «Линейная с post-view», окно без ограничения. Модель указана под заголовком каждого блока.</li>
       <li>В виде «Без брокеров» плитки и таблицы считаются по агрегатам Smartis с окном атрибуции 90 дней. Список договоров построен по полной цепочке касаний без ограничения окна, поэтому в нём на несколько договоров больше (на несколько договоров). Это сделки, у которых неброкерское касание было больше 90 дней назад.</li>
       <li>Переключатель вверху страницы. «С брокерами»: все данные, кроме технических сделок. «Без брокеров»: дополнительно в Smartis применяется фильтр «Источники в Smartis: Канал не включает Брокеры, Брокеры/Агенты» и исключаются сделки, созданные Филимоновым, Семеновой, Богатыревой, Пелюховой и Эвелиной Петровой. Число исключённых договоров показано под плиткой «Договоры подписаны».</li>
       <li>«Посещение офиса» не оценивается по модели «последнее касание»: последним касанием визит становится почти всегда, хотя клиента мог привести другой канал, в том числе через post-view. В этой модели строка показана серым.</li>
       <li>Произвольный период (поля «с … по …» вверху): обращения, целевые, договоры, сумма и бюджет считаются по дням, холд, касания, клиенты и цепочки — по договорам, подписанным в эти даты. Таблица каналов в этом режиме берёт целые месяцы, которые пересекаются с диапазоном.</li>
+      <li>Во всём отчёте исключены кладовые помещения и паркинги: фильтр Smartis «Битрикс24: Тип объекта» (#121246) не равен «Кладовое помещение» и «Паркинг». Фильтр действует только на показатели «Договор подписан» и «Сумма договоров подписан»: обращения, целевые и бюджет по типу объекта не делятся, поэтому остаются полными. Из-за этого CPO, CAC и ДРР считаются как полный бюджет к договорам без паркингов и кладовых.</li>
       <li>Технические сделки исключены везде: договоры, суммы, холд, касания и каналы. Это сделки, у которых в Битрикс24 «Пользователь, создавший сделку» — Болознева, Долгих или Агафонова. В Smartis для этого используется фильтр по этому полю, поштучный список с ним совпадает. На обращения правило почти не влияет: этими менеджерами создано 3 обращения из 6 531, они оставлены.</li>
       <li>ДРР = бюджет / сумма × 100 %. ROAS = сумма / бюджет. ROI = (сумма − бюджет) / бюджет × 100 %. CPO = бюджет / договоры. CAC = бюджет / уникальные клиенты с договором.</li>
       <li>CR в договор сравнивает договоры и целевые одного периода. Договоры этого периода часто выросли из обращений прошлых месяцев, поэтому это ориентир, а не когорта.</li>
       <li>Холд и касания посчитаны по каждому договору. У части договоров Smartis не нашёл ни одного касания (часто это сделки через агентства). Они показаны отдельной строкой и не входят в средние.</li>
       <li>Холд считается от самого первого касания этого клиента, которое знает Smartis. У клиентов, которые возвращаются через год-два, он получается очень длинным, поэтому ориентируйтесь на медиану.</li>
       <li>Бюджет брокеров («Бюджет факт (брокеры)» = «Бюджет медиапланов (факт)» по каналу «Брокеры/Агенты») внесён в Smartis с января по август 2026 и отсутствует за сентябрь и октябрь. В июле и августе суммы по проектам совпадают до рубля: возможно, август внесён копией июля.</li>
-      <li>Строка ИТОГО в таблице проектов берётся из сводного объекта Smartis «Все проекты». Период: 1 января – 19 октября 2026, октябрь неполный. Бюджет за октябрь может быть загружен в Smartis не полностью.</li>
+      <li>Строка ИТОГО в таблице проектов берётся из сводного объекта Smartis «Все проекты». Период: 1 января – 20 октября 2026, октябрь неполный. Бюджет за октябрь может быть загружен в Smartis не полностью.</li>
     </ul>
   </section>
   </div>
@@ -385,7 +436,8 @@
   <div id="tab-inet" class="px-tab" hidden>
   <section class="px-sec" id="i-eff">
     <h2 class="px-h2">Эффективность интернета</h2>
-    <p class="px-sub">Атрибуция Smartis «Линейная с post-view», окно без ограничения: каждое касание в цепочке, включая показы медийки, получает равную долю обращения и договора. В виде «Только брокеры» здесь видно, какую долю брокерских сделок дал интернет.</p>
+    <p class="px-sub">Атрибуция Smartis «Линейная с post-view», окно без ограничения: каждое касание в цепочке, включая показы медийки, получает равную долю обращения и договора. «Все сделки» учитывают и вклад интернета в брокерские договоры, «Без брокерских» — только договоры без брокеров.</p>
+    <div class="px-bar"><span class="px-note">Договоры:</span><div class="px-seg px-seg-s" role="group" aria-label="Какие договоры" id="dig-view"><button type="button" data-v="С брокерами">Все сделки</button><button type="button" data-v="Без брокеров">Без брокерских</button></div></div>
     <div class="px-tiles">
       <div class="px-tile"><span class="px-lab">Договоры от интернета</span><span class="px-big im dash-skeleton" data-source="inet_channels" data-field="deals">—</span><span class="px-note">доля в договорах: <span id="i-share-deals">—</span></span></div>
       <div class="px-tile"><span class="px-lab">Сумма договоров</span><span class="px-big im dash-skeleton" data-source="inet_channels" data-field="revenue">—</span><span class="px-note">доля в сумме: <span id="i-share-rev">—</span></span></div>
@@ -394,6 +446,7 @@
       <div class="px-tile"><span class="px-lab">CPO</span><span class="px-big im dash-skeleton" data-source="inet_channels" data-field="cpo">—</span><span class="px-note">бюджет / договоры</span></div>
       <div class="px-tile"><span class="px-lab">Цена целевого</span><span class="px-big im dash-skeleton" data-source="inet_channels" data-field="cpl_target">—</span><span class="px-note">целевых: <span class="im" data-source="inet_channels" data-field="target">—</span></span></div>
     </div>
+    <p class="px-sub">Касания с интернетом и медийкой до прихода клиента к брокеру разобраны во вкладке «Брокеры».</p>
     <p class="px-sub" id="i-brnote" hidden>«Только брокеры»: договоры и суммы посчитаны по брокерским договорам — каждому интернет-каналу его доля в цепочке договора. Это вклад интернета в сделки брокеров. Бюджет и обращения интернета на брокерские и прямые сделки не делятся, поэтому там прочерки.</p>
     <div class="px-legend"><span><i class="lp"></i>лучше итога интернета больше чем на 10 %</span><span><i class="ln"></i>хуже больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROI. Ниже — лучше: ДРР, CPO, цена целевого.</span></div>
     <p class="px-sub" id="i-ch-cnote" style="color: var(--color-warn)"></p>
@@ -426,7 +479,7 @@
   </section>
 
   <section class="px-sec" id="i-media">
-    <h2 class="px-h2">Медийная реклама в подписанных договорах</h2>
+    <h2 class="px-h2" id="i-media-h">Медийная реклама в подписанных договорах</h2>
     <p class="px-sub">По каждому подписанному договору считается, сколько касаний в его цепочке пришлось на канал «Медийная реклама», включая post-view (показы без клика). Договоры без касаний в Smartis в доли не входят.</p>
     <div class="px-tiles">
       <div class="px-tile"><span class="px-lab">Договоров с медийкой</span><span class="px-big mm dash-skeleton" data-source="inet_media_summary" data-field="deals_with_media">—</span><span class="px-note">из <span class="mm" data-source="inet_media_summary" data-field="deals_with_touches">—</span> с касаниями</span></div>
@@ -461,6 +514,82 @@
     </div>
   </section>
 
+  <section class="px-sec" id="i-broker">
+    <h2 class="px-h2">Касания до брокера: интернет и медийка</h2>
+    <p class="px-sub">Брокерские договоры, у которых нашлось первое брокерское обращение клиента (обращения с января 2025 года). «До брокера» — касания в цепочке этого обращения, без самого брокерского касания. «После брокера» — касания договора сверх них. Медийка считается вместе с post-view, то есть с показами без клика. Блок учитывает период и проект.</p>
+    <p class="px-sub" id="bp-empty" style="color: var(--color-warn)" hidden>Данных о брокерских обращениях пока нет: они появятся после следующего обновления.</p>
+    <div class="px-tiles" data-source="broker_path">
+      <div class="px-tile"><span class="px-lab">Брокерских договоров</span><span class="px-big" id="bp-deals">—</span><span class="px-note">сопоставлено с брокерским обращением: <span id="bp-matched">—</span></span></div>
+      <div class="px-tile"><span class="px-lab">Был интернет до брокера</span><span class="px-big" id="bp-inet-share">—</span><span class="px-note">договоров: <span id="bp-inet-n">—</span></span></div>
+      <div class="px-tile"><span class="px-lab">Была медийка до брокера</span><span class="px-big" id="bp-media-share">—</span><span class="px-note">договоров: <span id="bp-media-n">—</span></span></div>
+      <div class="px-tile"><span class="px-lab">Касаний до брокера</span><span class="px-big" id="bp-before">—</span><span class="px-note">интернет <span id="bp-before-inet">—</span> · медийка <span id="bp-before-media">—</span></span></div>
+      <div class="px-tile"><span class="px-lab">Касаний после брокера</span><span class="px-big" id="bp-after">—</span><span class="px-note">интернет <span id="bp-after-inet">—</span> · медийка <span id="bp-after-media">—</span></span></div>
+      <div class="px-tile"><span class="px-lab">От брокерского обращения до договора</span><span class="px-big" id="bp-days">—</span><span class="px-note">дней, медиана</span></div>
+    </div>
+
+    <div class="px-grid">
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Когда клиент видел медийку</span><span class="px-sub">Брокерские договоры по тому, были ли медийные касания до и после брокерского обращения</span></div><div class="px-hb" id="bp-seg-media" data-source="broker_path"></div></div>
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Когда клиент касался интернета</span><span class="px-sub">То же для всех интернет-каналов, включая медийку</span></div><div class="px-hb" id="bp-seg-inet" data-source="broker_path"></div></div>
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Медийных касаний до брокера</span><span class="px-sub">Число договоров по количеству медийных касаний до брокерского обращения</span></div><div class="px-hb" id="bp-media-dist" data-source="broker_path"></div></div>
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Интернет-касаний до брокера</span><span class="px-sub">Число договоров по количеству касаний с интернет-каналами до брокерского обращения</span></div><div class="px-hb" id="bp-inet-dist" data-source="broker_path"></div></div>
+    </div>
+
+    <h3 class="px-h3">Медийные площадки до брокера</h3>
+    <p class="px-sub">На каких площадках клиент видел медийку, пока ещё не пришёл к брокеру. Доля — от брокерских договоров, сопоставленных с обращением. Сумма — всех договоров, где площадка была до брокера.</p>
+    <div class="px-tcard"><div class="px-scroll" style="max-height: 26rem">
+      <table class="px-tbl" id="bp-pl-table" data-source="broker_path">
+        <thead>
+          <tr class="g"><th></th><th class="gs" colspan="3">До брокера</th><th class="gs" colspan="2">После брокера</th><th class="gs"></th></tr>
+          <tr class="h"><th class="l">Площадка</th><th class="gs">Договоров</th><th>Доля договоров</th><th>Касаний</th><th class="gs">Договоров</th><th>Касаний</th><th class="gs">Сумма договоров</th></tr>
+        </thead>
+        <tbody></tbody><tfoot></tfoot>
+      </table>
+    </div></div>
+
+    <h3 class="px-h3">Интернет-каналы до брокера</h3>
+    <p class="px-sub">То же по каналам: какие интернет-каналы клиент прошёл до брокера и какие — после.</p>
+    <div class="px-tcard"><div class="px-scroll" style="max-height: 26rem">
+      <table class="px-tbl" id="bp-ch-table" data-source="broker_path">
+        <thead>
+          <tr class="g"><th></th><th class="gs" colspan="3">До брокера</th><th class="gs" colspan="2">После брокера</th><th class="gs"></th></tr>
+          <tr class="h"><th class="l">Канал</th><th class="gs">Договоров</th><th>Доля договоров</th><th>Касаний</th><th class="gs">Договоров</th><th>Касаний</th><th class="gs">Сумма договоров</th></tr>
+        </thead>
+        <tbody></tbody><tfoot></tfoot>
+      </table>
+    </div></div>
+
+    <h3 class="px-h3">Касания до брокера и итог сделки</h3>
+    <p class="px-sub">Сравнение брокерских договоров с касаниями до брокера и без них. Разница показывает связь, а не доказанное влияние: клиенты, которые видели рекламу, могли и так быть «теплее».</p>
+    <div class="px-tcard"><div class="px-scroll">
+      <table class="px-tbl" id="bp-cmp-table" data-source="broker_path">
+        <thead><tr class="h"><th class="l">Договоры</th><th class="gs">Договоров</th><th>Доля</th><th class="gs">Средний чек</th><th>Дней от брокерского обращения до договора, медиана</th><th class="gs">Касаний после брокера, в среднем</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div></div>
+
+    <h3 class="px-h3">По месяцам подписания</h3>
+    <div class="px-tcard"><div class="px-scroll">
+      <table class="px-tbl" id="bp-month-table" data-source="broker_path">
+        <thead>
+          <tr class="g"><th></th><th class="gs" colspan="2">Договоры</th><th class="gs" colspan="2">Доля с касаниями до брокера</th><th class="gs" colspan="2">Касаний до брокера, в среднем</th></tr>
+          <tr class="h"><th class="l">Месяц</th><th class="gs">Брокерских</th><th>Сопоставлено</th><th class="gs">Интернет</th><th>Медийка</th><th class="gs">Интернет</th><th>Медийка</th></tr>
+        </thead>
+        <tbody></tbody><tfoot></tfoot>
+      </table>
+    </div></div>
+
+    <h3 class="px-h3">По проектам</h3>
+    <div class="px-tcard"><div class="px-scroll" style="max-height: 28rem">
+      <table class="px-tbl" id="bp-table" data-source="broker_path">
+        <thead>
+          <tr class="g"><th></th><th class="gs" colspan="2">Договоры</th><th class="gs" colspan="2">Доля с касаниями до брокера</th><th class="gs" colspan="3">Касаний до брокера, в среднем</th><th class="gs" colspan="3">После брокера</th><th class="gs"></th></tr>
+          <tr class="h"><th class="l">Проект</th><th class="gs">Брокерских</th><th>Сопоставлено</th><th class="gs">Интернет</th><th>Медийка</th><th class="gs">Всего</th><th>Интернет</th><th>Медийка</th><th class="gs">Всего</th><th>Интернет</th><th>Медийка</th><th class="gs">Дней до договора</th></tr>
+        </thead>
+        <tbody></tbody><tfoot></tfoot>
+      </table>
+    </div></div>
+  </section>
+
   <section class="px-sec" id="i-deals">
     <h2 class="px-h2">Договоры и медийные касания</h2>
     <p class="px-sub">Список следует фильтрам вверху страницы.</p>
@@ -492,42 +621,67 @@
     </div>
   </section>
 
+  <section class="px-sec" id="o-eff">
+    <h2 class="px-h2">Эффективность оффлайна</h2>
+    <p class="px-sub">Оффлайн-каналы Smartis ПСК: наружная реклама, листовки, пресса, радио, ТВ, электрички, PR, посещение офиса, «забор» и каналы «Оффлайн (…)». Атрибуция «Линейная с post-view», окно без ограничения: каждое касание в цепочке клиента получает равную долю договора. Все сделки, кроме технических.</p>
+    <div class="px-tiles" id="o-tiles" data-source="inet_channels"></div>
+    <div class="px-legend"><span><i class="lp"></i>лучше итога оффлайна больше чем на 10 %</span><span><i class="ln"></i>хуже больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROI. Ниже — лучше: ДРР, CPO, цена целевого.</span></div>
+    <p class="px-sub" id="o-cnote" style="color: var(--color-warn)"></p>
+    <div class="px-bar"><label for="o-places"><input type="checkbox" id="o-places" checked> Показать площадки (только за весь период)</label></div>
+    <div class="px-tcard">
+      <div class="px-scroll">
+        <table class="px-tbl" id="o-table" data-source="inet_channels">
+          <thead>
+            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="4">Эффективность</th></tr>
+            <tr class="h">
+              <th class="l" data-field="channel">Канал / площадка</th>
+              <th class="gs" data-field="leads">Обращения</th>
+              <th data-field="target">Целевые</th>
+              <th data-field="cr_lead_target">CR в целевое</th>
+              <th data-field="deals">Договоры</th>
+              <th data-field="cr_target_deal">CR в договор</th>
+              <th class="gs" data-field="revenue">Сумма договоров</th>
+              <th data-field="budget">Бюджет</th>
+              <th class="gs" data-field="drr">ДРР</th>
+              <th data-field="roi">ROI</th>
+              <th data-field="cpl_target">За целевое</th>
+              <th data-field="cpo">CPO</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </div>
+    <p class="px-sub">«Посещение в офис» почти всегда стоит в цепочке последним: клиент приходит в офис, когда уже выбрал. Его доля договоров показывает работу офиса продаж, а не рекламу, и бюджета у него нет.</p>
+  </section>
+
+  <section class="px-sec" id="o-chain">
+    <h2 class="px-h2">Оффлайн в цепочках договоров</h2>
+    <p class="px-sub">Сколько подписанных договоров хотя бы раз касались оффлайн-канала по полной цепочке Smartis и каких именно. Договор может касаться нескольких каналов, поэтому сумма строк больше итога.</p>
+    <div class="px-tiles" id="o-ctiles" data-source="deals"></div>
+    <div class="px-grid">
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Договоры с касанием канала</span><span class="px-sub">Доля — от договоров, у которых Smartis нашёл касания</span></div><div class="px-hb" id="o-bars" data-source="deals"></div></div>
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Оффлайн по месяцам</span><span class="px-sub">Доля договоров с оффлайн-касанием, без учёта визита в офис</span></div><div class="px-hb" id="o-month" data-source="deals"></div></div>
+    </div>
+    <div class="px-tcard"><div class="px-scroll">
+      <table class="px-tbl" id="o-ctable" data-source="deals">
+        <thead><tr class="h"><th class="l">Канал</th><th class="gs">Договоров с касанием</th><th>Доля договоров</th><th class="gs">Сумма этих договоров</th><th>Средний чек</th><th class="gs">Холд, медиана</th></tr></thead>
+        <tbody></tbody><tfoot></tfoot>
+      </table>
+    </div></div>
+  </section>
+
   <section class="px-sec" id="i-method">
     <h2 class="px-h2">Как считалось</h2>
     <ul class="px-meth">
-      <li>Источник: API Smartis, 1 января – 19 октября 2026. Модель атрибуции «Линейная с post-view», окно без ограничения. Технические сделки (создатель Болознева, Долгих, Агафонова) исключены всегда.</li>
+      <li>Источник: API Smartis, 1 января – 20 октября 2026. Модель атрибуции «Линейная с post-view», окно без ограничения. Технические сделки (создатель Болознева, Долгих, Агафонова) исключены всегда.</li>
       <li>«Без брокеров»: фильтр «Канал не включает Брокеры, Брокеры/Агенты» и без сделок Филимонова, Семеновой, Богатыревой, Пелюховой, Петровой Э.</li>
       <li>Интернет-каналы по классификации Smartis ПСК: контекст, медийка, реклама в соцсетях, SEO, программатик, базы недвижимости, лидогенерация, Карты, классифайды, SMM, органика соцсетей, рассылки.</li>
       <li>Медийные касания договора = все касания × доля канала «Медийная реклама» в цепочке по этой модели. Если медийка в цепочке есть, но доля меньше половины касания, считается одно касание.</li>
       <li>Сумма и средний чек — полная стоимость договоров. ROI считается от неё, а не от маржи, поэтому получается очень высоким.</li>
       <li>Данные обновляются автоматически из Smartis; номера сделок и данные клиентов в публичную версию не выгружаются.</li>
     </ul>
-  </section>
-  <section class="px-sec" id="i-broker">
-    <h2 class="px-h2">Интернет в брокерских сделках</h2>
-    <p class="px-sub">Только сделки брокеров: созданные брокерскими менеджерами или пришедшие только через брокерский канал. «До брокера» — касания в цепочке первого брокерского обращения клиента, без самого брокерского касания. «После брокера» — касания договора сверх них. Медийка учитывается с post-view. На этот блок влияют период и проект, переключатель вида — нет.</p>
-    <p class="px-sub" id="bp-empty" style="color: var(--color-warn)" hidden>Данных о брокерских обращениях пока нет: они появятся после следующего обновления.</p>
-    <div class="px-tiles" data-source="broker_path">
-      <div class="px-tile"><span class="px-lab">Брокерских договоров</span><span class="px-big" id="bp-deals">—</span><span class="px-note">сопоставлено с брокерским обращением: <span id="bp-matched">—</span></span></div>
-      <div class="px-tile"><span class="px-lab">Был интернет до брокера</span><span class="px-big" id="bp-inet-share">—</span><span class="px-note">договоров: <span id="bp-inet-n">—</span></span></div>
-      <div class="px-tile"><span class="px-lab">Были медийные показы до брокера</span><span class="px-big" id="bp-media-share">—</span><span class="px-note">договоров: <span id="bp-media-n">—</span></span></div>
-      <div class="px-tile"><span class="px-lab">Касаний до брокера</span><span class="px-big" id="bp-before">—</span><span class="px-note">интернет <span id="bp-before-inet">—</span> · медийка <span id="bp-before-media">—</span></span></div>
-      <div class="px-tile"><span class="px-lab">Касаний после брокера</span><span class="px-big" id="bp-after">—</span><span class="px-note">интернет <span id="bp-after-inet">—</span> · медийка <span id="bp-after-media">—</span></span></div>
-      <div class="px-tile"><span class="px-lab">От брокерского обращения до договора</span><span class="px-big" id="bp-days">—</span><span class="px-note">дней, медиана</span></div>
-    </div>
-    <div class="px-grid">
-      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Медийные показы до брокера</span><span class="px-sub">Число брокерских договоров по количеству медийных касаний до брокерского обращения</span></div><div class="px-hb" id="bp-media-dist" data-source="broker_path"></div></div>
-      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Интернет-каналы до брокера</span><span class="px-sub">В скольких брокерских договорах канал был в цепочке до брокерского обращения</span></div><div class="px-hb" id="bp-channels" data-source="broker_path"></div></div>
-    </div>
-    <div class="px-tcard"><div class="px-scroll" style="max-height: 28rem">
-      <table class="px-tbl" id="bp-table" data-source="broker_path">
-        <thead>
-          <tr class="g"><th></th><th class="gs" colspan="2">Договоры</th><th class="gs" colspan="2">Доля с касаниями до брокера</th><th class="gs" colspan="3">Касаний до брокера, в среднем</th><th class="gs" colspan="3">После брокера</th><th class="gs"></th></tr>
-          <tr class="h"><th class="l">Проект</th><th class="gs">Брокерских</th><th>Сопоставлено</th><th class="gs">Интернет</th><th>Медийка</th><th class="gs">Всего</th><th>Интернет</th><th>Медийка</th><th class="gs">Всего</th><th>Интернет</th><th>Медийка</th><th class="gs">Дней до договора</th></tr>
-        </thead>
-        <tbody></tbody><tfoot></tfoot>
-      </table>
-    </div></div>
   </section>
 
   </div>
@@ -670,8 +824,7 @@
       cpl_target: x.budget && x.target ? x.budget / x.target : '', cpo: x.budget && x.deals ? x.budget / x.deals : '' }));
     out.months = labs; return out;
   }
-  ['v-all', 'v-nb', 'v-br'].forEach((id) => $(id).addEventListener('click', () => dash.setParams({ view: $(id).dataset.v })));
-  const VNOTE = { 'С брокерами': 'Все сделки, кроме технических (Болознева, Долгих, Агафонова).', 'Без брокеров': 'Без каналов «Брокеры», «Брокеры/Агенты» и без сделок Филимонова, Семеновой, Богатыревой, Пелюховой, Петровой Э. Технические тоже исключены.', 'Только брокеры': 'Сделки брокеров: «Все сделки» минус «Без брокеров». Видно, какую долю в них дают интернет и другие каналы.' };
+  const VNOTE = { 'С брокерами': 'Все сделки, кроме технических (Болознева, Долгих, Агафонова). Везде без кладовок и паркингов.', 'Без брокеров': 'Без каналов «Брокеры», «Брокеры/Агенты» и без сделок Филимонова, Семеновой, Богатыревой, Пелюховой, Петровой Э. Технические тоже исключены.', 'Только брокеры': 'Сделки брокеров: «Все сделки» минус «Без брокеров». Видно, какую долю в них дают интернет и другие каналы.' };
 
   // ----- sorting
   const sortState = { proj: { k: 'revenue', dir: -1 }, deal: { k: 'sign_date', dir: -1 } };
@@ -700,12 +853,58 @@
     const p = tr.dataset.proj; dash.setParams({ project: params().project === p ? ALL : p });
   });
 
-  // ----- column filters (deals)
-  const FL = ['flt-id', 'flt-from', 'flt-to', 'flt-amount', 'flt-hold', 'flt-ad', 'flt-channel', 'flt-source', 'flt-status'];
+  // ----- column filters (deals): несколько значений в каждом фильтре
+  const MSID = ['flt-project', 'flt-amount', 'flt-hold', 'flt-ad', 'flt-channel', 'flt-source', 'flt-status'];
+  const MS = Object.fromEntries(MSID.map((id) => [id, new Set()]));
+  const msLabel = (id) => {
+    const d = $(id), s = MS[id], opts = d._opts || [];
+    const lab = s.size === 0 ? d.dataset.all : s.size === 1 ? ((opts.find((o) => o[0] === [...s][0]) || [0, [...s][0]])[1]) : 'Выбрано: ' + s.size;
+    d.querySelector('summary').textContent = lab; d.classList.toggle('on', s.size > 0);
+  };
+  function msOptions(id, opts) {
+    const d = $(id), sig = JSON.stringify(opts);
+    if (d._sig === sig) { msLabel(id); return; }
+    d._sig = sig; d._opts = opts;
+    const vals = new Set(opts.map((o) => o[0])); [...MS[id]].forEach((v) => { if (!vals.has(v)) MS[id].delete(v); });
+    const pop = d.querySelector('.px-ms-pop'); pop.replaceChildren();
+    const mk = (val, text, cls) => {
+      const l = document.createElement('label'); if (cls) l.className = cls;
+      const c = document.createElement('input'); c.type = 'checkbox'; c.dataset.v = val;
+      l.append(c, document.createTextNode(text)); pop.append(l); return c;
+    };
+    mk('', d.dataset.all, 'all');
+    opts.forEach(([v, t]) => mk(v, t));
+    const sync = () => pop.querySelectorAll('input').forEach((c) => { c.checked = c.dataset.v === '' ? MS[id].size === 0 : MS[id].has(c.dataset.v); });
+    pop.onchange = (e) => {
+      const v = e.target.dataset.v;
+      if (v === '') MS[id].clear(); else if (e.target.checked) MS[id].add(v); else MS[id].delete(v);
+      if (MS[id].size === opts.length && opts.length > 1) MS[id].clear();
+      sync(); msLabel(id); draw();
+    };
+    sync(); msLabel(id);
+  }
+  document.addEventListener('click', (e) => document.querySelectorAll('details.px-ms[open]').forEach((d) => { if (!d.contains(e.target)) d.open = false; }));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('details.px-ms[open]').forEach((d) => { d.open = false; }); });
+  document.querySelectorAll('details.px-ms').forEach((d) => d.addEventListener('toggle', () => { if (d.open) document.querySelectorAll('details.px-ms[open]').forEach((x) => { if (x !== d) x.open = false; }); }));
+  msOptions('flt-amount', [['0-5', 'до 5 млн'], ['5-10', '5–10 млн'], ['10-20', '10–20 млн'], ['20-1e12', 'от 20 млн']]);
+  msOptions('flt-hold', [['0-30', 'до 30 дн.'], ['31-90', '31–90 дн.'], ['91-365', '91–365 дн.'], ['366-1e9', 'больше года'], ['none', 'нет касаний']]);
+  msOptions('flt-ad', [['yes', 'есть реклама'], ['no', 'без рекламы']]);
+  const FL = ['flt-id', 'flt-from', 'flt-to'];
   FL.forEach((id) => $(id).addEventListener(id === 'flt-id' ? 'input' : 'change', () => draw()));
-  $('flt-project').addEventListener('change', () => dash.setParams({ project: $('flt-project').value || ALL }));
-  function clearFilters() { FL.forEach((id) => { $(id).value = ''; }); draw(); }
-  $('deal-clear').addEventListener('click', () => { clearFilters(); dash.setParams({ project: ALL }); });
+  function clearFilters() { FL.forEach((id) => { $(id).value = ''; }); MSID.forEach((id) => { MS[id].clear(); const d = $(id); d._sig = null; }); draw(); }
+  $('deal-clear').addEventListener('click', () => clearFilters());
+  let dlView = 'c'; const dlOpen = new Set();
+  try { const s = localStorage.getItem('psk-dl-view'); if (s === 'c' || s === 'd') dlView = s; } catch (e) { /* хранилище недоступно */ }
+  ['dl-vc', 'dl-vd'].forEach((id) => $(id).addEventListener('click', () => { dlView = $(id).dataset.v; try { localStorage.setItem('psk-dl-view', dlView); } catch (e) { /* ок */ } draw(); }));
+  $('deal-table').addEventListener('click', (e) => { const b = e.target.closest('.px-exp'); if (!b) return; const k = b.dataset.k; if (dlOpen.has(k)) dlOpen.delete(k); else dlOpen.add(k); draw(); });
+  const CNUM = new Map();
+  const clientNums = (rows, view) => {
+    if (CNUM.has(view)) return CNUM.get(view);
+    const m = new Map(); [...rows].sort((a, b) => String(a.sign_date).localeCompare(String(b.sign_date)) || Number(a.deal_id) - Number(b.deal_id))
+      .forEach((r) => { const k = r.client || 'd' + (r.deal_id || r._i); if (!m.has(k)) m.set(k, m.size + 1); });
+    CNUM.set(view, m); return m;
+  };
+  const plural = (n, a, b, c) => { const x = Math.abs(n) % 100, y = x % 10; return x > 10 && x < 20 ? c : y > 1 && y < 5 ? b : y === 1 ? a : c; };
   const fillSelect = (sel, allLabel, values) => {
     const cur = sel.value;
     const opts = [new Option(allLabel, ''), ...values.map((v) => new Option(v, v))];
@@ -747,8 +946,6 @@
 
   function draw() {
     const { period, project, view } = params();
-    ['v-all', 'v-nb', 'v-br'].forEach((id) => $(id).setAttribute('aria-pressed', String($(id).dataset.v === view)));
-    $('view-note').textContent = VNOTE[view] || '';
     const V = (r) => r.view === view;
     const S = dash.data('summary'), Dd = dash.data('dist'), C = dash.data('chains'), De = dash.data('deals');
     if (S.status === 'ok') {
@@ -827,69 +1024,134 @@
 
     // ----- deals table
     const db = $('deal-table').tBodies[0], dfoot = $('deal-table').tFoot; db.replaceChildren(); dfoot.replaceChildren();
+    $('dl-vc').setAttribute('aria-pressed', String(dlView === 'c')); $('dl-vd').setAttribute('aria-pressed', String(dlView === 'd'));
+    const h0 = $('dl-h0'), h2 = $('dl-h2');
+    if (dlView === 'c') { h0.textContent = 'Клиент'; h0.dataset.k = 'client_n'; h2.textContent = 'Договоров'; h2.dataset.k = 'n'; }
+    else { h0.textContent = 'Сделка'; h0.dataset.k = 'deal_id'; h2.textContent = 'Клиент'; h2.dataset.k = 'client_n'; }
     markSort('deal-table', sortState.deal);
     if (De.status === 'ok') {
+      if (CNUM._src !== De.data) { CNUM.clear(); CNUM._src = De.data; De.data.forEach((r, i) => { r._i = i; }); }
+      const CN = clientNums(De.data.filter(V), view);
       const base = De.data.filter((r) => V(r) && (isC ? r.sign_date >= cf0 && r.sign_date <= ct0 : period === FULL || r.period === period));
-      fillSelect($('flt-project'), 'Все проекты', uniq(base.map((r) => r.project)));
-      $('flt-project').value = project === ALL ? '' : project;
       const inProj = base.filter((r) => project === ALL || r.project === project);
-      fillSelect($('flt-channel'), 'Любой канал', uniq(inProj.flatMap((r) => r.channels.split(' → '))));
-      fillSelect($('flt-source'), 'Любой', uniq(inProj.map((r) => r.lead_source)));
-      fillSelect($('flt-status'), 'Любой', uniq(inProj.map((r) => r.status)));
+      msOptions('flt-project', uniq(inProj.map((r) => r.project)).map((x) => [x, x]));
+      msOptions('flt-channel', uniq(inProj.flatMap((r) => r.channels.split(' → '))).map((x) => [x, x]));
+      msOptions('flt-source', uniq(inProj.map((r) => r.lead_source)).map((x) => [x, x]));
+      msOptions('flt-status', uniq(inProj.map((r) => r.status)).map((x) => [x, x]));
       const v = Object.fromEntries(FL.map((id) => [id, $(id).value]));
-      FL.concat('flt-project').forEach((id) => $(id).classList.toggle('on', !!$(id).value));
+      FL.forEach((id) => $(id).classList.toggle('on', !!$(id).value));
       const rng = (s) => s.split('-').map(Number);
+      const any = (id, pred) => MS[id].size === 0 || [...MS[id]].some(pred);
+      const noT = (r) => !(isNum(r.hold_days) && Number(r.touches) > 0);
       const rows = inProj.filter((r) => {
         if (v['flt-id'] && !String(r.deal_id).includes(v['flt-id'].trim())) return false;
         if (v['flt-from'] && r.sign_date < v['flt-from']) return false;
         if (v['flt-to'] && r.sign_date > v['flt-to']) return false;
-        if (v['flt-amount']) { const [a, b] = rng(v['flt-amount']); const m = Number(r.amount) / 1e6; if (m < a || m >= b) return false; }
-        if (v['flt-hold']) {
-          if (v['flt-hold'] === 'none') { if (isNum(r.hold_days) && Number(r.touches) > 0) return false; }
-          else { const [a, b] = rng(v['flt-hold']); if (!isNum(r.hold_days) || Number(r.touches) === 0 || r.hold_days < a || r.hold_days > b) return false; }
-        }
-        if (v['flt-ad'] === 'yes' && !(Number(r.ad_touches) > 0)) return false;
-        if (v['flt-ad'] === 'no' && Number(r.ad_touches) > 0) return false;
-        if (v['flt-channel'] && !r.channels.split(' → ').includes(v['flt-channel'])) return false;
-        if (v['flt-source'] && r.lead_source !== v['flt-source']) return false;
-        if (v['flt-status'] && r.status !== v['flt-status']) return false;
+        if (!any('flt-project', (x) => r.project === x)) return false;
+        if (!any('flt-amount', (x) => { const [a, b] = rng(x), m = Number(r.amount) / 1e6; return m >= a && m < b; })) return false;
+        if (!any('flt-hold', (x) => x === 'none' ? noT(r) : (() => { const [a, b] = rng(x); return !noT(r) && Number(r.hold_days) >= a && Number(r.hold_days) <= b; })())) return false;
+        if (!any('flt-ad', (x) => x === 'yes' ? Number(r.ad_touches) > 0 : !(Number(r.ad_touches) > 0))) return false;
+        if (!any('flt-channel', (x) => r.channels.split(' → ').includes(x))) return false;
+        if (!any('flt-source', (x) => r.lead_source === x)) return false;
+        if (!any('flt-status', (x) => r.status === x)) return false;
         return true;
-      }).sort(cmp(sortState.deal.k, sortState.deal.dir));
-      $('deal-count').textContent = 'Показано ' + nf.format(rows.length) + ' из ' + nf.format(inProj.length) + ' договоров';
-      const frag = document.createDocumentFragment();
-      rows.forEach((r) => {
-        const tr = document.createElement('tr'); tr.dataset.key = enc(r.view) + ',' + enc(r.deal_id);
-        const c0 = document.createElement('td'); c0.className = 'l';
-        if (r.link) { const a = document.createElement('a'); a.href = /^https:\/\/bitrix\.psk-info\.ru\//.test(r.link) ? r.link : '#'; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.deal_id; c0.append(a); }
-        else c0.textContent = r.deal_id || '—';
-        tr.append(c0);
-        td(tr, r.project, 'l');
-        td(tr, r.sign_date ? r.sign_date.split('-').reverse().join('.') : '—');
-        td(tr, rub(r.amount));
+      });
+      const ck = (r) => r.client || 'd' + (r.deal_id || r._i);
+      const grp = new Map(); rows.forEach((r) => { const k = ck(r); if (!grp.has(k)) grp.set(k, []); grp.get(k).push(r); });
+      rows.forEach((r) => { r.client_n = CN.get(ck(r)) || 0; r.n = grp.get(ck(r)).length; });
+      const CL = [...grp.entries()].map(([k, g]) => {
+        g.sort((a, b) => String(b.sign_date).localeCompare(String(a.sign_date)) || Number(b.deal_id) - Number(a.deal_id));
+        const last = g[0], first = g[g.length - 1];
+        return { key: k, g, n: g.length, client_n: CN.get(k) || 0, deal_id: last.deal_id, link: last.link, project: uniq(g.map((r) => r.project)).join(', '),
+          sign_date: last.sign_date, first_date: first.sign_date, amount: g.reduce((s, r) => s + Number(r.amount || 0), 0), hold_days: last.hold_days,
+          touches: last.touches, ad_touches: last.ad_touches, channels: last.channels, lead_source: first.lead_source, status: last.status };
+      });
+      // карточки над таблицей
+      const sum = rows.reduce((s, r) => s + Number(r.amount || 0), 0), withT = rows.filter((r) => Number(r.touches) > 0);
+      const holds = withT.map((r) => Number(r.hold_days)).filter((x) => !isNaN(x));
+      const avgk = (k) => withT.length ? withT.reduce((s, r) => s + Number(r[k]), 0) / withT.length : null;
+      const c1 = CL.filter((c) => c.n === 1).length, c2 = CL.filter((c) => c.n === 2).length, c3 = CL.filter((c) => c.n >= 3).length;
+      const rep = c2 + c3, repDeals = CL.filter((c) => c.n > 1).reduce((s, c) => s + c.n, 0);
+      const res = $('dl-res'); res.replaceChildren();
+      const bigs = document.createElement('div'); bigs.className = 'px-bigs';
+      [[nf.format(CL.length), plural(CL.length, 'клиент', 'клиента', 'клиентов')], [nf.format(rows.length), plural(rows.length, 'договор', 'договора', 'договоров')], [rub(sum), 'сумма договоров']]
+        .forEach(([b, s]) => { const d = document.createElement('div'); const bb = document.createElement('b'); bb.textContent = b; const ss = document.createElement('span'); ss.textContent = s; d.append(bb, ss); bigs.append(d); });
+      const SC = [[c1, 'один договор', dash.colors[0]], [c2, 'два договора', dash.colors[1]], [c3, 'три и больше', dash.colors[2]]];
+      const sb = document.createElement('div'); sb.className = 'px-sbar';
+      SC.forEach(([n, l, c]) => { if (!n) return; const i = document.createElement('i'); i.style.width = (n / Math.max(1, CL.length) * 100) + '%'; i.style.background = c; i.title = l + ': ' + n; sb.append(i); });
+      const sl = document.createElement('div'); sl.className = 'px-sleg';
+      SC.forEach(([n, l, c]) => { const s = document.createElement('span'); const i = document.createElement('i'); i.style.background = c; s.append(i, document.createTextNode(l + ': ' + nf.format(n))); sl.append(s); });
+      const rn = document.createElement('p'); rn.className = 'px-sub';
+      rn.textContent = rep ? 'Повторные клиенты: ' + nf.format(rep) + ' (' + n1.format(rep / CL.length * 100) + ' % клиентов) подписали ' + nf.format(repDeals) + ' ' + plural(repDeals, 'договор', 'договора', 'договоров') + ' — ' + n1.format(repDeals / Math.max(1, rows.length) * 100) + ' % всех.' : 'Повторных клиентов в выборке нет.';
+      res.append(bigs, sb, sl, rn);
+      const mon = $('dl-mon'); mon.replaceChildren();
+      const mr = (l, b, sm) => { const d = document.createElement('div'); d.className = 'px-mrow'; const s = document.createElement('span'); s.textContent = l; const bb = document.createElement('b'); bb.textContent = b; d.append(s, bb); if (sm) { const x = document.createElement('small'); x.textContent = sm; d.append(x); } mon.append(d); };
+      mr('Средний чек', rows.length ? rub(sum / rows.length) : '—', CL.length ? 'на клиента — ' + rub(sum / CL.length) : '');
+      mr('Холд до договора', holds.length ? n1.format(median(holds)) + ' дн.' : '—', 'медиана, от первого касания в Smartis до подписания');
+      mr('Касаний до договора', avgk('touches') !== null ? n1.format(avgk('touches')) : '—', avgk('ad_touches') !== null ? 'из них рекламных — ' + n1.format(avgk('ad_touches')) + ', в среднем на договор' : '');
+      mr('Без касаний в Smartis', nf.format(rows.length - withT.length), rows.length ? n1.format((rows.length - withT.length) / rows.length * 100) + ' % договоров, не входят в холд и касания' : '');
+      // таблица
+      const cnt = dlView === 'c' ? nf.format(CL.length) + ' ' + plural(CL.length, 'клиент', 'клиента', 'клиентов') + ' · ' : '';
+      $('deal-count').textContent = 'Показано ' + cnt + nf.format(rows.length) + ' из ' + nf.format(inProj.length) + ' договоров';
+      const link = (cell, r, pre) => {
+        if (!r.deal_id) { if (!pre) cell.append(document.createTextNode('—')); return; }
+        if (pre) cell.append(document.createTextNode(pre));
+        if (r.link) { const a = document.createElement('a'); a.href = /^https:\/\/bitrix\.psk-info\.ru\//.test(r.link) ? r.link : '#'; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.deal_id; cell.append(a); }
+        else cell.append(document.createTextNode(r.deal_id || '—'));
+      };
+      const dmyS = (d) => d ? d.split('-').reverse().join('.') : '—';
+      const tail = (tr, r) => {
         td(tr, isNum(r.hold_days) && Number(r.touches) > 0 ? nf.format(r.hold_days) : '—', 'gs');
-        td(tr, nf.format(r.touches));
-        td(tr, nf.format(r.ad_touches));
+        td(tr, nf.format(r.touches)); td(tr, nf.format(r.ad_touches));
         const cc = td(tr, '', 'wrap gs'); chips(cc, r.channels);
         td(tr, r.lead_source || '—', 'l'); td(tr, r.status, 'l');
-        frag.append(tr);
-      });
+      };
+      const frag = document.createDocumentFragment();
+      if (dlView === 'c') {
+        CL.sort(cmp(sortState.deal.k, sortState.deal.dir)).forEach((c) => {
+          const tr = document.createElement('tr'); tr.dataset.key = enc(view) + ',' + enc(c.deal_id);
+          const c0 = document.createElement('td'); c0.className = 'l';
+          if (c.n > 1) { const b = document.createElement('button'); b.type = 'button'; b.className = 'px-exp'; b.dataset.k = c.key; b.textContent = '›'; b.setAttribute('aria-expanded', String(dlOpen.has(c.key))); b.setAttribute('aria-label', 'Показать договоры клиента'); c0.append(b); }
+          else { const sp = document.createElement('span'); sp.className = 'px-exp-sp'; c0.append(sp); }
+          const w = document.createElement('span'); w.className = 'px-who'; w.textContent = 'Клиент ' + c.client_n; c0.append(w);
+          const sub = document.createElement('span'); sub.className = 'px-tsub'; sub.style.paddingLeft = '26px';
+          if (c.n === 1) link(sub, c, 'сделка '); else link(sub, c, 'последняя ');
+          c0.append(sub); tr.append(c0);
+          td(tr, c.project, 'l');
+          const cn = td(tr, ''); const b2 = document.createElement('span'); b2.className = c.n > 1 ? 'px-cnt' : ''; b2.textContent = c.n; cn.append(b2);
+          const cd = td(tr, dmyS(c.sign_date)); if (c.n > 1) { const s = document.createElement('span'); s.className = 'px-tsub'; s.textContent = 'первый ' + dmyS(c.first_date); cd.append(s); }
+          td(tr, rub(c.amount));
+          tail(tr, c); frag.append(tr);
+          if (c.n > 1 && dlOpen.has(c.key)) c.g.forEach((r) => {
+            const k = document.createElement('tr'); k.className = 'px-kid'; k.dataset.key = enc(r.view) + ',' + enc(r.deal_id);
+            const k0 = document.createElement('td'); k0.className = 'l'; link(k0, r, 'сделка '); k.append(k0);
+            td(k, r.project, 'l'); td(k, ''); td(k, dmyS(r.sign_date)); td(k, rub(r.amount)); tail(k, r); frag.append(k);
+          });
+        });
+      } else {
+        rows.sort(cmp(sortState.deal.k, sortState.deal.dir)).forEach((r) => {
+          const tr = document.createElement('tr'); tr.dataset.key = enc(r.view) + ',' + enc(r.deal_id);
+          const c0 = document.createElement('td'); c0.className = 'l'; link(c0, r); tr.append(c0);
+          td(tr, r.project, 'l');
+          const cc = td(tr, 'Клиент ' + r.client_n); if (r.n > 1) { const s = document.createElement('span'); s.className = 'px-tsub'; s.textContent = r.n + ' ' + plural(r.n, 'договор', 'договора', 'договоров'); cc.append(s); }
+          td(tr, dmyS(r.sign_date)); td(tr, rub(r.amount)); tail(tr, r); frag.append(tr);
+        });
+      }
       db.append(frag);
       // ИТОГО по отобранным
-      const withT = rows.filter((r) => Number(r.touches) > 0);
-      const holds = withT.map((r) => Number(r.hold_days)).filter((x) => !isNaN(x));
-      const sum = rows.reduce((s, r) => s + Number(r.amount || 0), 0);
-      const avg = (k) => withT.length ? n1.format(withT.reduce((s, r) => s + Number(r[k]), 0) / withT.length) : '—';
       const ft = document.createElement('tr');
-      const c1 = td(ft, 'ИТОГО', 'l'); const s1 = document.createElement('span'); s1.className = 'px-tsub'; s1.textContent = nf.format(rows.length) + ' договоров'; c1.append(s1);
+      const sub = (cell, t) => { const s = document.createElement('span'); s.className = 'px-tsub'; s.textContent = t; cell.append(s); return cell; };
+      sub(td(ft, 'ИТОГО', 'l'), nf.format(CL.length) + ' ' + plural(CL.length, 'клиент', 'клиента', 'клиентов') + ' · ' + nf.format(rows.length) + ' ' + plural(rows.length, 'договор', 'договора', 'договоров'));
       const projN = new Set(rows.map((r) => r.project)).size;
-      td(ft, nf.format(projN) + ' ' + (projN === 1 ? 'проект' : projN < 5 && projN > 0 ? 'проекта' : 'проектов'), 'l');
+      td(ft, nf.format(projN) + ' ' + plural(projN, 'проект', 'проекта', 'проектов'), 'l');
+      sub(td(ft, nf.format(rep)), 'повторных клиентов');
       const dates = rows.map((r) => r.sign_date).filter(Boolean).sort();
-      td(ft, dates.length ? dates[0].split('-').reverse().join('.').slice(0, 5) + ' – ' + dates[dates.length - 1].split('-').reverse().join('.').slice(0, 5) : '—');
-      const cs = td(ft, rub(sum)); const ss = document.createElement('span'); ss.className = 'px-tsub'; ss.textContent = 'средний ' + (rows.length ? rub(sum / rows.length) : '—'); cs.append(ss);
-      const ch = td(ft, holds.length ? n1.format(median(holds)) : '—', 'gs'); const sh = document.createElement('span'); sh.className = 'px-tsub'; sh.textContent = 'медиана'; ch.append(sh);
-      const ct = td(ft, avg('touches')); const st = document.createElement('span'); st.className = 'px-tsub'; st.textContent = 'в среднем'; ct.append(st);
-      const ca = td(ft, avg('ad_touches')); const sa = document.createElement('span'); sa.className = 'px-tsub'; sa.textContent = 'в среднем'; ca.append(sa);
-      td(ft, withT.length ? nf.format(rows.length - withT.length) + ' без касаний в Smartis' : '—', 'l gs');
+      td(ft, dates.length ? dmyS(dates[0]).slice(0, 5) + ' – ' + dmyS(dates[dates.length - 1]).slice(0, 5) : '—');
+      sub(td(ft, rub(sum)), 'средний ' + (rows.length ? rub(sum / rows.length) : '—'));
+      sub(td(ft, holds.length ? n1.format(median(holds)) : '—', 'gs'), 'медиана');
+      sub(td(ft, avgk('touches') !== null ? n1.format(avgk('touches')) : '—'), 'в среднем');
+      sub(td(ft, avgk('ad_touches') !== null ? n1.format(avgk('ad_touches')) : '—'), 'в среднем');
+      td(ft, nf.format(rows.length - withT.length) + ' без касаний в Smartis', 'l gs');
       td(ft, '', 'l'); td(ft, '', 'l');
       dfoot.append(ft);
     } else $('deal-count').textContent = '';
@@ -906,17 +1168,42 @@
       const tot = mine.find((r) => r.level === 'total');
       const GR = ['Интернет', 'Офлайн-реклама', 'Брокеры', 'Прочее'];
       const pct = (a, b) => (Number(b) ? n1.format(Number(a) / Number(b) * 100) + ' %' : '—');
-      GR.forEach((g) => {
-        const r = mine.find((x) => x.level === 'group' && x.grp === g); if (!r) return;
-        const t = document.createElement('div'); t.className = 'px-tile';
-        const l = document.createElement('span'); l.className = 'px-lab'; l.textContent = g;
-        const b = document.createElement('span'); b.className = 'px-big'; b.textContent = n1.format(r.deals) + ' дог.';
-        const n = document.createElement('span'); n.className = 'px-note';
-        n.textContent = pct(r.deals, tot && tot.deals) + ' договоров · ' + pct(r.revenue, tot && tot.revenue) + ' суммы';
-        const n2e = document.createElement('span'); n2e.className = 'px-note';
-        n2e.textContent = Number(r.budget) ? 'бюджет ' + rub(r.budget) + ' · ДРР ' + F.drr(r.drr) + ' · CPO ' + rub(r.cpo) : 'без бюджета в Smartis';
-        t.append(l, b, n, n2e); gt.append(t);
-      });
+      const GC = { 'Интернет': dash.colors[0], 'Офлайн-реклама': dash.colors[1], 'Брокеры': dash.colors[3] || dash.colors[2], 'Прочее': 'var(--cds-chart-muted)' };
+      const grs = GR.map((g) => mine.find((x) => x.level === 'group' && x.grp === g)).filter(Boolean);
+      if (grs.length) {
+        const leg = document.createElement('div'); leg.className = 'px-gleg';
+        grs.forEach((r) => { const s = document.createElement('span'); const i = document.createElement('i'); i.style.background = GC[r.grp]; s.append(i, document.createTextNode(r.grp)); leg.append(s); });
+        const bw = document.createElement('div'); bw.className = 'px-gbars';
+        [['deals', 'Договоры'], ['revenue', 'Сумма договоров'], ['budget', 'Бюджет']].forEach(([k, lab]) => {
+          const T = grs.reduce((s, r) => s + (Number(r[k]) || 0), 0);
+          const l = document.createElement('span'); l.textContent = lab;
+          const bar = document.createElement('div'); bar.className = 'px-gbar';
+          grs.forEach((r) => {
+            const p = T ? (Number(r[k]) || 0) / T * 100 : 0; if (!p) return;
+            const i = document.createElement('i'); i.style.width = p + '%'; i.style.background = GC[r.grp];
+            i.textContent = p >= 6 ? Math.round(p) + ' %' : ''; i.title = r.grp + ' · ' + lab.toLowerCase() + ': ' + n1.format(p) + ' %'; bar.append(i);
+          });
+          bw.append(l, bar);
+        });
+        const note = document.createElement('p'); note.className = 'px-sub';
+        note.textContent = 'Если доля группы в договорах и сумме больше её доли в бюджете, она окупается лучше среднего. Цвет ДРР и CPO ниже — сравнение с итогом по всем каналам.';
+        const cards = document.createElement('div'); cards.className = 'px-gcards';
+        grs.forEach((r) => {
+          const c = document.createElement('div'); c.className = 'px-gcard'; c.style.setProperty('--px-gc', GC[r.grp]);
+          const t = document.createElement('span'); t.className = 't'; t.textContent = r.grp;
+          const b = document.createElement('span'); b.className = 'b'; b.textContent = n1.format(r.deals) + ' дог.';
+          const dl = document.createElement('dl');
+          const row = (k, v, cls) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; if (cls) dd.className = cls; dl.append(dt, dd); };
+          const cmpLo = (k) => { if (!tot || !isNum(r[k]) || !isNum(tot[k]) || !Number(tot[k]) || !Number(r[k])) return ''; const q = Number(r[k]) / Number(tot[k]); return q < 0.9 ? 'px-good' : q > 1.1 ? 'px-bad' : ''; };
+          row('Доля договоров', pct(r.deals, tot && tot.deals));
+          row('Сумма', rub(r.revenue));
+          const hasB = Number(r.budget) > 0;
+          row('Бюджет', hasB ? rub(r.budget) : 'нет в Smartis');
+          if (hasB) { row('ДРР', F.drr(r.drr), cmpLo('drr')); row('CPO', rub(r.cpo), cmpLo('cpo')); }
+          c.append(t, b, dl); cards.append(c);
+        });
+        gt.append(leg, bw, note, cards);
+      }
       const showOff = $('px-offline').checked, showPl = $('px-places').checked;
       const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'roi', 'cpl_target', 'cpo'];
       const GSC = new Set(['leads', 'revenue', 'drr']);
@@ -1163,55 +1450,103 @@
 <script>
 
 (() => {
-  const ALL = 'Все проекты', FULL = 'Весь период', CUSTOM = 'Произвольный период';
-  const nf = new Intl.NumberFormat('ru-RU'), n1 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
+  const ALL = 'Все проекты', FULL = 'Весь период', CUSTOM = 'Произвольный период', BR = 'Только брокеры';
+  const nf = new Intl.NumberFormat('ru-RU'), n1 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 }), n2 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 });
   const $ = (id) => document.getElementById(id);
-  const num = (v) => v !== '' && v !== null && v !== undefined && !isNaN(Number(v));
+  const N = (v) => Number(v) || 0;
   const median = (a) => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
-  const avg = (a, k) => a.length ? a.reduce((s, r) => s + (Number(r[k]) || 0), 0) / a.length : null;
-  const f1 = (x) => x === null || x === undefined ? '—' : n1.format(x);
+  const avg = (a, k) => a.length ? a.reduce((s, r) => s + N(r[k]), 0) / a.length : null;
+  const f1 = (x) => x === null || x === undefined || isNaN(x) ? '—' : n1.format(x);
   const pc = (a, b) => b ? n1.format(a / b * 100) + ' %' : '—';
-  const MB = [['0', 0, 0], ['1–5', 0.01, 5], ['6–20', 5.01, 20], ['21–50', 20.01, 50], ['Больше 50', 50.01, 1e9]];
+  const money = (x) => !x ? '—' : x >= 1e9 ? n2.format(x / 1e9) + ' млрд ₽' : x >= 1e6 ? n1.format(x / 1e6) + ' млн ₽' : nf.format(Math.round(x)) + ' ₽';
+  const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const BK = [['0', 0, 0], ['до 1', 0.01, 1], ['1–5', 1.01, 5], ['6–20', 5.01, 20], ['21–50', 20.01, 50], ['Больше 50', 50.01, 1e9]];
+  const parse = (s) => String(s || '').split('|').filter(Boolean).map((x) => { const i = x.lastIndexOf(':'); return [x.slice(0, i), Number(x.slice(i + 1)) || 0]; });
   function bars(el, rows, color) {
     el.replaceChildren(); const max = Math.max(1, ...rows.map((r) => r.n)), total = rows.reduce((s, r) => s + r.n, 0);
     rows.forEach((r) => {
       const row = document.createElement('div'); row.className = 'px-hb-row';
       const lab = document.createElement('span'); lab.textContent = r.label;
       const tr = document.createElement('div'); tr.className = 'px-track';
-      const f = document.createElement('div'); f.className = 'px-fill'; f.style.width = (r.n / max * 100) + '%'; f.style.setProperty('--px-c', color); tr.append(f);
+      const f = document.createElement('div'); f.className = 'px-fill'; f.style.width = (r.n / max * 100) + '%'; f.style.setProperty('--px-c', r.color || color); tr.append(f);
       const v = document.createElement('span'); v.className = 'px-hb-v'; v.textContent = nf.format(r.n) + (total && r.pct !== false ? ' · ' + Math.round(r.n / total * 100) + ' %' : '');
       row.append(lab, tr, v); el.append(row);
     });
   }
+  function rowOf(parent, cells, gs, cls) {
+    const tr = document.createElement('tr'); if (cls) tr.className = cls;
+    cells.forEach((t, i) => { const c = document.createElement('td'); c.textContent = t; if (i === 0) c.className = 'l'; if (gs.includes(i)) c.classList.add('gs'); tr.append(c); });
+    parent.append(tr);
+  }
   function stats(rows) {
-    const m = rows.filter((r) => Number(r.matched) === 1);
-    return { n: rows.length, m: m.length, inet: m.filter((r) => Number(r.before_inet) > 0).length, media: m.filter((r) => Number(r.before_media) > 0).length,
+    const m = rows.filter((r) => N(r.matched) === 1);
+    return { n: rows.length, m: m.length, inet: m.filter((r) => N(r.before_inet) > 0).length, media: m.filter((r) => N(r.before_media) > 0).length,
       b: avg(m, 'before_all'), bi: avg(m, 'before_inet'), bm: avg(m, 'before_media'), a: avg(m, 'after_all'), ai: avg(m, 'after_inet'), am: avg(m, 'after_media'),
       days: median(m.map((r) => Number(r.days_lead_to_deal)).filter((x) => !isNaN(x))), rows: m };
   }
+  function seg(m, bk, ak) {
+    const c = [0, 0, 0, 0];
+    m.forEach((r) => { const b = N(r[bk]) > 0, a = N(r[ak]) > 0; c[b && !a ? 0 : b && a ? 1 : !b && a ? 2 : 3]++; });
+    return [{ label: 'Только до брокера', n: c[0] }, { label: 'И до, и после', n: c[1] }, { label: 'Только после брокера', n: c[2] }, { label: 'Не было', n: c[3] }];
+  }
+  function keyTable(id, m, bk, ak) {
+    const t = $(id), tb = t.tBodies[0], tf = t.tFoot; tb.replaceChildren(); tf.replaceChildren();
+    const agg = new Map(), get = (k) => { if (!agg.has(k)) agg.set(k, { bd: 0, bt: 0, ad: 0, at: 0, rev: 0 }); return agg.get(k); };
+    m.forEach((r) => {
+      parse(r[bk]).forEach(([k, v]) => { const g = get(k); g.bd++; g.bt += v; g.rev += N(r.amount); });
+      parse(r[ak]).forEach(([k, v]) => { const g = get(k); g.ad++; g.at += v; });
+    });
+    [...agg.entries()].sort((x, y) => y[1].bd - x[1].bd || y[1].ad - x[1].ad).forEach(([k, g]) =>
+      rowOf(tb, [k, nf.format(g.bd), pc(g.bd, m.length), f1(g.bt), nf.format(g.ad), f1(g.at), money(g.rev)], [1, 4, 6]));
+    const anyB = m.filter((r) => parse(r[bk]).length), anyA = m.filter((r) => parse(r[ak]).length);
+    const sum = (a, k) => a.reduce((s, r) => s + parse(r[k]).reduce((x, [, v]) => x + v, 0), 0);
+    rowOf(tf, ['ИТОГО (хотя бы одно)', nf.format(anyB.length), pc(anyB.length, m.length), f1(sum(m, bk)), nf.format(anyA.length), f1(sum(m, ak)), money(anyB.reduce((s, r) => s + N(r.amount), 0))], [1, 4, 6]);
+    if (!agg.size) rowOf(tb, ['Нет касаний за выбранный период и проект', '', '', '', '', '', ''], []);
+  }
+  function cmpTable(m) {
+    const tb = $('bp-cmp-table').tBodies[0]; tb.replaceChildren();
+    const line = (name, a) => rowOf(tb, [name, nf.format(a.length), pc(a.length, m.length), money(a.length ? a.reduce((s, r) => s + N(r.amount), 0) / a.length : 0),
+      f1(median(a.map((r) => Number(r.days_lead_to_deal)).filter((x) => !isNaN(x)))), f1(avg(a, 'after_all'))], [1, 3, 5]);
+    line('С медийкой до брокера', m.filter((r) => N(r.before_media) > 0));
+    line('Без медийки до брокера', m.filter((r) => !(N(r.before_media) > 0)));
+    line('С интернетом до брокера', m.filter((r) => N(r.before_inet) > 0));
+    line('Без интернета до брокера', m.filter((r) => !(N(r.before_inet) > 0)));
+    line('Все сопоставленные', m);
+  }
+  function monthTable(rows) {
+    const t = $('bp-month-table'), tb = t.tBodies[0], tf = t.tFoot; tb.replaceChildren(); tf.replaceChildren();
+    const by = new Map(); rows.forEach((r) => { const k = String(r.sign_date || '').slice(0, 7); if (!k) return; if (!by.has(k)) by.set(k, []); by.get(k).push(r); });
+    const put = (p, name, a) => { const s = stats(a); rowOf(p, [name, nf.format(s.n), nf.format(s.m), pc(s.inet, s.m), pc(s.media, s.m), f1(s.bi), f1(s.bm)], [1, 3, 5]); };
+    [...by.keys()].sort().forEach((k) => put(tb, MONTHS[Number(k.slice(5, 7)) - 1] + ' ' + k.slice(0, 4), by.get(k)));
+    put(tf, 'ИТОГО', rows);
+  }
   function draw() {
-    const P = dash.params(), period = P.period || FULL, project = P.project || ALL, from = P.from || '', to = P.to || '';
+    const P = dash.params(), view = P.view || 'С брокерами', period = P.period || FULL, project = P.project || ALL, from = P.from || '', to = P.to || '';
+    const isBr = view === BR;
+    const h = $('i-media-h'); if (h) h.textContent = isBr ? 'Медийная реклама в брокерских договорах' : 'Медийная реклама в подписанных договорах';
+    if (!isBr) return;
     const BP = dash.data('broker_path'), ok = BP.status === 'ok';
     const inP = (r) => period === CUSTOM ? r.sign_date >= from && r.sign_date <= to : period === FULL || r.period === period;
     const all = ok ? BP.data.filter(inP) : [];
     const rows = all.filter((r) => project === ALL || r.project === project);
-    $('bp-empty').hidden = !(ok && BP.data.length && !BP.data.some((r) => Number(r.matched) === 1));
-    const s = stats(rows);
+    $('bp-empty').hidden = !(ok && BP.data.length && !BP.data.some((r) => N(r.matched) === 1));
+    const s = stats(rows), m = s.rows;
     const set = (id, t) => { $(id).textContent = ok ? t : '—'; };
     set('bp-deals', nf.format(s.n)); set('bp-matched', nf.format(s.m) + (s.n ? ' (' + Math.round(s.m / s.n * 100) + ' %)' : ''));
     set('bp-inet-share', pc(s.inet, s.m)); set('bp-inet-n', nf.format(s.inet)); set('bp-media-share', pc(s.media, s.m)); set('bp-media-n', nf.format(s.media));
     set('bp-before', f1(s.b)); set('bp-before-inet', f1(s.bi)); set('bp-before-media', f1(s.bm));
     set('bp-after', f1(s.a)); set('bp-after-inet', f1(s.ai)); set('bp-after-media', f1(s.am)); set('bp-days', f1(s.days));
-    bars($('bp-media-dist'), MB.map(([label, lo, hi]) => ({ label, n: s.rows.filter((r) => Number(r.before_media) >= lo && Number(r.before_media) <= hi).length })), dash.colors[0]);
-    const cc = new Map(); s.rows.forEach((r) => String(r.before_channels || '').split(', ').filter(Boolean).forEach((c) => cc.set(c, (cc.get(c) || 0) + 1)));
-    bars($('bp-channels'), [...cc.entries()].sort((a, b) => b[1] - a[1]).map(([label, n]) => ({ label, n, pct: false })), dash.colors[1]);
+    bars($('bp-seg-media'), seg(m, 'before_media', 'after_media'), dash.colors[0]);
+    bars($('bp-seg-inet'), seg(m, 'before_inet', 'after_inet'), dash.colors[1]);
+    const dist = (k) => BK.map(([label, lo, hi]) => ({ label, n: m.filter((r) => N(r[k]) >= lo && N(r[k]) <= hi).length }));
+    bars($('bp-media-dist'), dist('before_media'), dash.colors[0]);
+    bars($('bp-inet-dist'), dist('before_inet'), dash.colors[1]);
+    keyTable('bp-pl-table', m, 'before_media_pl', 'after_media_pl');
+    keyTable('bp-ch-table', m, 'before_inet_ch', 'after_inet_ch');
+    cmpTable(m);
+    monthTable(rows);
     const tb = $('bp-table').tBodies[0], tf = $('bp-table').tFoot; tb.replaceChildren(); tf.replaceChildren();
-    const put = (parent, name, st, sel) => {
-      const tr = document.createElement('tr'); if (sel) tr.className = 'sel';
-      [name, nf.format(st.n), nf.format(st.m), pc(st.inet, st.m), pc(st.media, st.m), f1(st.b), f1(st.bi), f1(st.bm), f1(st.a), f1(st.ai), f1(st.am), f1(st.days)].forEach((t, i) => {
-        const c = document.createElement('td'); c.textContent = t; if (i === 0) c.className = 'l'; if ([1, 3, 5, 8, 11].includes(i)) c.classList.add('gs'); tr.append(c); });
-      parent.append(tr);
-    };
+    const put = (parent, name, st, sel) => rowOf(parent, [name, nf.format(st.n), nf.format(st.m), pc(st.inet, st.m), pc(st.media, st.m), f1(st.b), f1(st.bi), f1(st.bm), f1(st.a), f1(st.ai), f1(st.am), f1(st.days)], [1, 3, 5, 8, 11], sel ? 'sel' : '');
     if (ok) {
       [...new Set(all.map((r) => r.project))].sort((a, b) => a.localeCompare(b, 'ru')).forEach((p) => { const st = stats(all.filter((r) => r.project === p)); if (st.n) put(tb, p, st, p === project); });
       put(tf, 'ИТОГО', stats(all), false);
@@ -1220,14 +1555,158 @@
   dash.onData(draw);
 })();
 
+</script>
+<script>
+
+(() => {
+  const ALL = 'Все проекты', FULL = 'Весь период', CUSTOM = 'Произвольный период', MODEL = 'Линейная с post-view', VIEW = 'С брокерами', GRP = 'Офлайн-реклама', OFFICE = 'Посещение в офис';
+  const nf = new Intl.NumberFormat('ru-RU'), n1 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 }), n2 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 });
+  const isNum = (v) => v !== '' && v !== null && v !== undefined && !isNaN(Number(v));
+  const rub = (v) => { if (!isNum(v)) return '—'; const x = Number(v); return Math.abs(x) >= 1e9 ? n2.format(x / 1e9) + ' млрд ₽' : Math.abs(x) >= 1e6 ? n1.format(x / 1e6) + ' млн ₽' : nf.format(Math.round(x)) + ' ₽'; };
+  const pct = (v) => isNum(v) ? n1.format(v) + ' %' : '—';
+  const F = { leads: (v) => isNum(v) ? nf.format(Math.round(v)) : '—', target: (v) => isNum(v) ? nf.format(Math.round(v)) : '—', deals: (v) => isNum(v) ? n1.format(v) : '—',
+    revenue: rub, budget: rub, cpo: rub, cpl_target: rub, drr: (v) => isNum(v) ? n2.format(v) + ' %' : '—', roi: (v) => isNum(v) ? nf.format(Math.round(v)) + ' %' : '—', cr_lead_target: pct, cr_target_deal: pct };
+  const $ = (id) => document.getElementById(id);
+  const RUM = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const median = (a) => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  const derive = (x) => ({ ...x, cr_lead_target: x.leads ? x.target / x.leads * 100 : '', cr_target_deal: x.target ? x.deals / x.target * 100 : '',
+    drr: x.revenue && x.budget ? x.budget / x.revenue * 100 : '', roi: x.budget ? (x.revenue - x.budget) / x.budget * 100 : '',
+    cpl_target: x.budget && x.target ? x.budget / x.target : '', cpo: x.budget && x.deals ? x.budget / x.deals : '' });
+  function customRows(rows, from, to) {
+    const labs = [...new Set(rows.map((r) => r.period))].filter((lab) => { const i = RUM.indexOf(lab.split(' ')[0]); if (i < 0) return false; const a = from.slice(0, 4) + '-' + String(i + 1).padStart(2, '0'); return a >= from.slice(0, 7) && a <= to.slice(0, 7); });
+    const acc = new Map();
+    rows.filter((r) => labs.includes(r.period) && r.level !== 'placement').forEach((r) => {
+      const x = acc.get(r.key) || { ...r, period: CUSTOM, leads: 0, target: 0, deals: 0, revenue: 0, budget: 0 };
+      ['leads', 'target', 'deals', 'revenue', 'budget'].forEach((k) => { x[k] += Number(r[k]) || 0; }); acc.set(r.key, x); });
+    const out = [...acc.values()].map(derive); out.months = labs; return out;
+  }
+  const HI = new Set(['cr_lead_target', 'cr_target_deal', 'roi']), LO = new Set(['drr', 'cpo', 'cpl_target']);
+  const tone = (c, k, v, ref) => {
+    if (!(HI.has(k) || LO.has(k)) || !isNum(v)) return; const x = Number(v);
+    if (k === 'roi' && x < 0) { c.classList.add('px-neg'); return; }
+    if (!ref || !isNum(ref[k]) || Number(ref[k]) === 0 || (LO.has(k) && x === 0)) return;
+    const q = x / Number(ref[k]);
+    if (HI.has(k) ? q > 1.1 : q < 0.9) c.classList.add('px-pos'); else if (HI.has(k) ? q < 0.9 : q > 1.1) c.classList.add('px-neg');
+  };
+  const td = (tr, txt, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = txt; tr.append(c); return c; };
+  const tile = (host, lab, big, note) => { const t = document.createElement('div'); t.className = 'px-tile'; const l = document.createElement('span'); l.className = 'px-lab'; l.textContent = lab; const b = document.createElement('span'); b.className = 'px-big'; b.textContent = big; t.append(l, b); if (note) { const n = document.createElement('span'); n.className = 'px-note'; n.textContent = note; t.append(n); } host.append(t); };
+  function bars(el, rows, color) {
+    el.replaceChildren(); const max = Math.max(1, ...rows.map((r) => r.n));
+    rows.forEach((r) => {
+      const row = document.createElement('div'); row.className = 'px-hb-row';
+      const lab = document.createElement('span'); lab.textContent = r.label;
+      const tr = document.createElement('div'); tr.className = 'px-track';
+      const f = document.createElement('div'); f.className = 'px-fill'; f.style.width = (r.n / max * 100) + '%'; f.style.setProperty('--px-c', r.muted ? 'var(--cds-chart-muted)' : color); tr.append(f);
+      const v = document.createElement('span'); v.className = 'px-hb-v'; v.textContent = r.text; row.append(lab, tr, v); el.append(row);
+    });
+  }
+  $('o-places').addEventListener('change', () => draw());
+  function draw() {
+    if (($('o-eff') || {}).hidden) return;
+    const P = dash.params(), period = P.period || FULL, project = P.project || ALL, from = P.from || '', to = P.to || '', isC = period === CUSTOM;
+    const CH = dash.data('inet_channels'), DE = dash.data('deals');
+    // эффективность
+    const base0 = CH.status === 'ok' ? CH.data.filter((r) => r.view === VIEW && r.project === project && r.model === MODEL) : [];
+    const mine = isC ? customRows(base0, from, to) : base0.filter((r) => r.period === period);
+    $('o-cnote').textContent = isC ? (mine.months && mine.months.length ? 'В произвольном периоде каналы считаются по целым месяцам: ' + mine.months.join(', ') + '. Площадки — только за весь период.' : 'В выбранном диапазоне нет месяцев с данными по каналам.') : '';
+    const g = mine.find((r) => r.level === 'group' && r.grp === GRP), tot = mine.find((r) => r.level === 'total');
+    const tl = $('o-tiles'); tl.replaceChildren();
+    if (g) {
+      tile(tl, 'Договоры от оффлайна', F.deals(g.deals), 'доля в договорах: ' + (tot && Number(tot.deals) ? n1.format(g.deals / tot.deals * 100) + ' %' : '—'));
+      tile(tl, 'Сумма договоров', rub(g.revenue), 'доля в сумме: ' + (tot && Number(tot.revenue) ? n1.format(g.revenue / tot.revenue * 100) + ' %' : '—'));
+      tile(tl, 'Бюджет оффлайна', rub(g.budget), 'доля в бюджете: ' + (tot && Number(tot.budget) ? n1.format(g.budget / tot.budget * 100) + ' %' : '—'));
+      tile(tl, 'ДРР', F.drr(g.drr), 'по всем каналам: ' + (tot ? F.drr(tot.drr) : '—'));
+      tile(tl, 'CPO', rub(g.cpo), 'по всем каналам: ' + (tot ? rub(tot.cpo) : '—'));
+      tile(tl, 'Цена целевого', rub(g.cpl_target), 'целевых: ' + F.target(g.target));
+    }
+    const cb = $('o-table').tBodies[0], cf = $('o-table').tFoot; cb.replaceChildren(); cf.replaceChildren();
+    const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'roi', 'cpl_target', 'cpo'], GSC = new Set(['leads', 'revenue', 'drr']);
+    const put = (parent, r, label, cls, ref) => {
+      const tr = document.createElement('tr'); if (cls) tr.className = cls;
+      const c0 = td(tr, label, 'l'); if (cls === 'px-pl') c0.style.paddingLeft = '28px';
+      if (r.channel === OFFICE && cls === 'px-ch') { const s = document.createElement('span'); s.className = 'px-tsub'; s.textContent = 'последнее касание перед сделкой, без бюджета'; c0.append(s); }
+      if (parent === cf) { const s = document.createElement('span'); s.className = 'px-tsub'; s.textContent = 'все оффлайн-каналы'; c0.append(s); }
+      cols.forEach((k) => { const c = td(tr, F[k](r[k]), GSC.has(k) ? 'gs' : ''); if (ref && r.channel !== OFFICE) tone(c, k, r[k], ref); });
+      parent.append(tr);
+    };
+    if (g) {
+      mine.filter((x) => x.level === 'channel' && x.grp === GRP).sort((a, b) => Number(b.budget) - Number(a.budget) || Number(b.deals) - Number(a.deals)).forEach((c) => {
+        put(cb, c, c.channel, 'px-ch', g);
+        if ($('o-places').checked) mine.filter((x) => x.level === 'placement' && x.channel === c.channel && x.placement !== c.channel)
+          .sort((a, b) => Number(b.budget) - Number(a.budget) || Number(b.deals) - Number(a.deals)).forEach((p) => put(cb, p, p.placement, 'px-pl', g));
+      });
+      put(cf, g, 'ИТОГО', '', null);
+    }
+    // цепочки договоров
+    const OFF = new Set(CH.status === 'ok' ? CH.data.filter((r) => r.grp === GRP && r.level === 'channel').map((r) => r.channel) : []);
+    const ds = DE.status === 'ok' ? DE.data.filter((r) => r.view === VIEW && (project === ALL || r.project === project) && (isC ? r.sign_date >= from && r.sign_date <= to : period === FULL || r.period === period)) : [];
+    const wt = ds.filter((r) => Number(r.touches) > 0);
+    const chs = (r) => String(r.channels || '').split(' → ').filter((c) => OFF.has(c));
+    const withOff = wt.filter((r) => chs(r).length), withAd = wt.filter((r) => chs(r).some((c) => c !== OFFICE));
+    const amt = (a) => a.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const ct = $('o-ctiles'); ct.replaceChildren();
+    if (DE.status === 'ok') {
+      tile(ct, 'Договоров с оффлайн-касанием', nf.format(withOff.length), 'это ' + (wt.length ? n1.format(withOff.length / wt.length * 100) : '—') + ' % договоров с касаниями');
+      tile(ct, 'Без учёта визита в офис', nf.format(withAd.length), 'оффлайн-реклама в ' + (wt.length ? n1.format(withAd.length / wt.length * 100) : '—') + ' % договоров');
+      tile(ct, 'Сумма договоров с оффлайн-рекламой', rub(amt(withAd)), 'средний чек ' + (withAd.length ? rub(amt(withAd) / withAd.length) : '—'));
+      const noAd = wt.filter((r) => !chs(r).some((c) => c !== OFFICE));
+      tile(ct, 'Средний чек без оффлайн-рекламы', noAd.length ? rub(amt(noAd) / noAd.length) : '—', 'договоров: ' + nf.format(noAd.length));
+    }
+    const per = new Map(); wt.forEach((r) => [...new Set(chs(r))].forEach((c) => { if (!per.has(c)) per.set(c, []); per.get(c).push(r); }));
+    const list = [...per.entries()].sort((a, b) => b[1].length - a[1].length);
+    bars($('o-bars'), list.map(([c, a]) => ({ label: c, n: a.length, muted: c === OFFICE, text: nf.format(a.length) + ' · ' + (wt.length ? Math.round(a.length / wt.length * 100) : 0) + ' %' })), dash.colors[1]);
+    const bm = new Map(); wt.forEach((r) => { const m = String(r.sign_date || '').slice(0, 7); if (!m) return; const x = bm.get(m) || { n: 0, o: 0 }; x.n++; if (chs(r).some((c) => c !== OFFICE)) x.o++; bm.set(m, x); });
+    bars($('o-month'), [...bm.entries()].sort().map(([m, x]) => ({ label: RUM[Number(m.slice(5, 7)) - 1], n: x.n ? x.o / x.n * 100 : 0, text: (x.n ? n1.format(x.o / x.n * 100) : '—') + ' % · ' + x.o })), dash.colors[1]);
+    const tb = $('o-ctable').tBodies[0], tf = $('o-ctable').tFoot; tb.replaceChildren(); tf.replaceChildren();
+    const line = (p, name, a) => {
+      const tr = document.createElement('tr'); td(tr, name, 'l'); td(tr, nf.format(a.length), 'gs'); td(tr, wt.length ? n1.format(a.length / wt.length * 100) + ' %' : '—');
+      td(tr, rub(amt(a)), 'gs'); td(tr, a.length ? rub(amt(a) / a.length) : '—');
+      const h = a.map((r) => Number(r.hold_days)).filter((x) => !isNaN(x)); td(tr, h.length ? n1.format(median(h)) + ' дн.' : '—', 'gs'); p.append(tr);
+    };
+    list.forEach(([c, a]) => line(tb, c, a));
+    if (!list.length) { const tr = document.createElement('tr'); td(tr, 'Нет договоров с оффлайн-касаниями за выбранный период и проект', 'l'); tb.append(tr); }
+    line(tf, 'Хотя бы один оффлайн-канал', withOff);
+  }
+  dash.onData(draw);
+  window.addEventListener('psk-tab', draw);
+})();
 
 </script>
 <script>
 
 (() => {
-  const show = (t) => { ['main', 'inet'].forEach((x) => { document.getElementById('tab-' + x).hidden = x !== t; document.getElementById('tab-btn-' + x).setAttribute('aria-selected', String(x === t)); }); try { dash.setLink(t === 'inet' ? 'internet' : 'summary'); } catch (e) {} };
-  document.querySelectorAll('.px-tabs button').forEach((b) => b.addEventListener('click', () => { show(b.dataset.tab); window.dispatchEvent(new Event('resize')); }));
-  show(location.hash.slice(1) === 'internet' ? 'inet' : 'main');
+  const $ = (id) => document.getElementById(id);
+  const TABS = {
+    all: { view: 'С брокерами', secs: ['results', 'journey', 'projects', 'deals', 'channels', 'method'], note: 'Все сделки, кроме технических (Болознева, Долгих, Агафонова). Везде без кладовок и паркингов.' },
+    digital: { view: null, secs: ['i-eff', 'i-media', 'i-deals', 'i-method'], note: 'Интернет-каналы: эффективность, медийка и договоры с медийными касаниями. Атрибуция «Линейная с post-view».' },
+    brokers: { view: 'Только брокеры', secs: ['results', 'i-broker', 'i-media', 'journey', 'projects', 'deals', 'method'], note: 'Сделки брокеров: созданные брокерскими менеджерами или пришедшие через брокерский канал. Видно, какие касания были до брокера и после.' },
+    offline: { view: 'С брокерами', secs: ['o-eff', 'o-chain', 'i-method'], note: 'Оффлайн-реклама: наружка, пресса, радио, ТВ, листовки, электрички, PR, «забор», визиты в офис. Атрибуция «Линейная с post-view».' },
+  };
+  const main = $('tab-main'), inet = $('tab-inet');
+  if (inet) { [...inet.children].forEach((c) => main.append(c)); inet.remove(); }
+  main.hidden = false;
+  const ALLSECS = [...main.querySelectorAll(':scope > section.px-sec')];
+  let cur = null;
+  function apply() {
+    const P = dash.params();
+    let t = P.tab && TABS[P.tab] ? P.tab : 'all';
+    const T = TABS[t];
+    const want = T.view || (P.view === 'Без брокеров' ? 'Без брокеров' : 'С брокерами');
+    if ((P.view || 'С брокерами') !== want) { dash.setParams({ view: want }); return; }
+    document.querySelectorAll('#tab-bar button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tab === t)));
+    $('view-note').textContent = T.note;
+    ALLSECS.forEach((s) => { const i = T.secs.indexOf(s.id); s.hidden = i < 0; s.style.order = i < 0 ? 99 : i; });
+    const dv = $('dig-view'); if (dv) dv.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === want)));
+    $('takeaway').hidden = t === 'digital' || t === 'offline';
+    if (cur !== t) { cur = t; try { dash.setLink(t); } catch (e) { /* нет поддержки ссылок */ } window.dispatchEvent(new Event('psk-tab')); window.dispatchEvent(new Event('resize')); }
+  }
+  document.querySelectorAll('#tab-bar button').forEach((b) => b.addEventListener('click', () => {
+    const t = b.dataset.tab, T = TABS[t];
+    dash.setParams({ tab: t, view: T.view || 'С брокерами' });
+  }));
+  const dv = $('dig-view'); if (dv) dv.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => dash.setParams({ view: b.dataset.v })));
+  const h = location.hash.slice(1); if (TABS[h] && !dash.params().tab) dash.setParams({ tab: h, view: TABS[h].view || 'С брокерами' });
+  dash.onData(apply);
 })();
 
 </script>
