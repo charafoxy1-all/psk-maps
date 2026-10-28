@@ -127,6 +127,24 @@
 .px-cb { gap: var(--cds-gap-sm); }
 .px-cb-bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .px-cb-l { display: inline-flex; gap: 6px; align-items: center; }
+.px-how { margin: 10px 0 14px; border: 1px solid var(--color-border-line); border-radius: 10px; background: var(--color-panel); max-width: 62rem; }
+.px-how > summary { cursor: pointer; padding: 8px 14px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); list-style: none; }
+.px-how > summary::before { content: '＋ '; }
+.px-how[open] > summary::before { content: '− '; }
+.px-how > div { padding: 0 16px 12px; }
+.px-how p { margin: 8px 0 0; font-size: var(--cds-font-size-caption); line-height: 1.5; }
+
+.px-bm { display: flex; gap: 10px; align-items: stretch; height: 260px; margin: 12px 0 6px; }
+.px-bm-col { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: stretch; }
+.px-bm-wrap { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; }
+.px-bm-stack { display: flex; flex-direction: column; border-radius: 6px 6px 0 0; overflow: hidden; gap: 1px; }
+.px-bm-stack > div { color: #fff; font-size: var(--cds-font-size-caption); display: flex; align-items: center; justify-content: center; min-height: 2px; overflow: hidden; }
+.px-bm-tot { text-align: center; font-size: var(--cds-font-size-caption); font-weight: 600; min-height: 18px; }
+.px-bm-lab { text-align: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding-top: 4px; }
+.px-hxbar { display: flex; height: 22px; min-width: 200px; border-radius: 5px; overflow: hidden; gap: 1px; }
+.px-hxbar > i { font-style: normal; font-size: 11px; display: flex; align-items: center; justify-content: center; color: #333; }
+.px-hxdot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; }
+.px-hx td { vertical-align: middle; }
 .px-cb-chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .px-cb-gh { flex-basis: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--color-fg-muted); margin-top: 6px; }
 .px-cb-chip { font: inherit; font-size: var(--cds-font-size-caption); display: inline-flex; gap: 6px; align-items: center; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--color-border-line); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
@@ -242,7 +260,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
       <span class="px-viewnote" id="view-note"></span>
     </div>
     <h1 class="px-title" id="title">Маркетинг ПСК · январь–октябрь</h1>
-    <p class="px-take" id="budget-warn" style="color: var(--color-warn)">Бюджеты: за сентябрь брокерские комиссии внесены (70 млн ₽ — вдвое больше обычного, стоит сверить), а остальной рекламный бюджет — частично (31 млн ₽ при обычных 64–75 млн ₽). Октябрь почти не внесён. Поэтому ДРР, ROI, CPO и CAC за сентябрь–октябрь занижены; для сравнения ориентируйтесь на месяцы по август.</p>
+    <p class="px-take" id="budget-warn" style="color: var(--color-warn)">Бюджеты: за сентябрь брокерские комиссии внесены (70 млн ₽ — вдвое больше обычного, стоит сверить), а остальной рекламный бюджет — частично (31 млн ₽ при обычных 64–75 млн ₽). Октябрь почти не внесён. Поэтому ДРР, норматив, CPO и CAC за сентябрь–октябрь занижены; для сравнения ориентируйтесь на месяцы по август.</p>
     <p class="px-take" id="takeaway">
       <span class="px-tk-scope">—</span>:
       <b data-source="summary" data-field="deals" class="px-m dash-skeleton">—</b> договоров на
@@ -268,13 +286,14 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <div id="tab-main" class="px-tab">
   <section class="px-sec" id="results">
     <h2 class="px-h2">Результат</h2>
-    <div class="px-tiles">
+    
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Договоры и сумма — подписанные договоры по дате подписания. Бюджет — фактические расходы из Smartis с НДС и АК.</p><p>ДРР = бюджет / сумма договоров: чем ниже, тем дешевле каждый рубль договоров. </p><p><b>Норматив</b> — ДРР только вашего рекламного бюджета без брокерских комиссий: свой бюджет делится на сумму ВСЕХ договоров, включая брокерские. Чем ниже, тем меньше своих денег уходит на рубль договоров. <b>ДРР брокеров</b> — то же для брокерских комиссий. Норматив и ДРР брокеров вместе дают общий ДРР. ROAS и ROI убраны: для недвижимости они почти ничего не добавляют.</p><p>CPO — бюджет на один договор, CAC — на уникального клиента (он выше CPO, когда один клиент подписал несколько договоров).</p><p>Договор подписывается в среднем через несколько месяцев после первого касания, поэтому договоры месяца относятся к бюджетам прошлых месяцев. Судите по тренду за несколько месяцев, а не по одному.</p><p>Бюджеты за сентябрь–октябрь внесены не полностью, поэтому ДРР и CPO за эти месяцы занижены. Сравнивайте с месяцами до августа.</p></div></details><div class="px-tiles">
       <div class="px-tile"><span class="px-lab">Договоры подписаны</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="deals">—</span><span class="px-note">уникальных клиентов <span class="px-m" data-source="summary" data-field="unique_clients">—</span></span><span class="px-note">исключено фильтрами: <span class="px-m" data-source="summary" data-field="excl_deals">—</span></span></div>
       <div class="px-tile"><span class="px-lab">Сумма договоров</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="revenue">—</span><span class="px-note">на дату подписания</span></div>
       <div class="px-tile"><span class="px-lab">Бюджет с НДС и АК</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="budget">—</span><span class="px-note">факт из Smartis</span></div>
       <div class="px-tile"><span class="px-lab">ДРР</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="drr">—</span><span class="px-note">бюджет / сумма договоров</span></div>
-      <div class="px-tile"><span class="px-lab">ROAS</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="roas">—</span><span class="px-note">сумма / бюджет</span></div>
-      <div class="px-tile"><span class="px-lab">ROI</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="roi">—</span><span class="px-note">(сумма − бюджет) / бюджет</span></div>
+      <div class="px-tile" id="t-norm"><span class="px-lab">Норматив</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="norm">—</span><span class="px-note">свой бюджет без брокеров / сумма всех договоров</span></div>
+      <div class="px-tile" id="t-drrb"><span class="px-lab">ДРР брокеров</span><span class="px-big px-m dash-skeleton" data-source="summary" data-field="drr_brk">—</span><span class="px-note">бюджет брокеров / сумма всех договоров</span></div>
     </div>
     <div class="px-grid">
       <div class="px-card" id="funnel">
@@ -302,6 +321,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="journey">
     <h2 class="px-h2">Путь до сделки</h2>
     <p class="px-sub">Касания из цепочек Smartis: линейная модель с post-view и окном без ограничения, как в вашей метрике «Количество касаний к сделке». Post-view означает, что просмотры медийной рекламы тоже считаются касаниями, поэтому рекламных касаний много. Рекламные каналы: контекст, медийка, реклама в соцсетях, Карты, базы недвижимости, лидогенерация, рассылки, пресса, «забор» и прочая реклама. SEO, прямые заходы, брокеры и визиты в офис рекламными не считаются.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Холд — дни от первого касания в Smartis до подписания; смотрите на медиану, среднее искажают очень долгие клиенты.</p><p>Чем длиннее холд и больше касаний, тем сложнее сделка и тем важнее прогрев: канал, который стоит в конце цепочки, не обязательно тот, что привёл клиента.</p><p>Договоры «без касаний в Smartis» не входят в холд и количество касаний: у них нет следов в рекламной статистике.</p></div></details>
     <div class="px-grid">
       <div class="px-card" id="hold">
         <div class="px-card-h"><span class="px-card-t">Холд до сделки</span><span class="px-sub">Дней от первого касания до подписания договора</span></div>
@@ -327,9 +347,53 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     </div>
   </section>
 
+  <section class="px-sec" id="bymonth">
+    <h2 class="px-h2">Договоры по месяцам: интернет, брокеры и другие каналы</h2>
+    <p class="px-sub">Сколько договоров по месяцам дал каждый тип источника. Договор делится между каналами цепочки по выбранной модели атрибуции, поэтому числа дробные.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Каждый столбец — месяц подписания договоров, высота — число договоров, цвета — группы источников. Режим «Доли» показывает, как менялось соотношение интернета и брокеров, независимо от общего объёма.</p><p>Договоры месяца приходят от обращений прошлых месяцев, поэтому резкие скачки в одну сторону чаще объясняются сроками сделок, чем качеством каналов. Последний месяц неполный.</p></div></details>
+    <div class="px-card">
+      <div class="px-cb-bar"><div class="px-seg px-seg-s" role="group" aria-label="Режим" id="bm-mode"><button type="button" data-v="n">Договоры</button><button type="button" data-v="p">Доли, %</button><button type="button" data-v="r">Сумма</button></div><span class="px-sub" id="bm-note"></span></div>
+      <div class="px-bm" id="bm-chart" data-source="channels"></div>
+      <div class="px-cb-leg" id="bm-leg"></div>
+    </div>
+  </section>
+
+  <section class="px-sec" id="holdx">
+    <h2 class="px-h2">Холд по каналам и касаниям</h2>
+    <p class="px-sub">Сколько времени проходит от первого касания до подписания в зависимости от канала и числа касаний. Каждая полоса — 100 % договоров строки, разбитых по длине холда.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Тёмные участки полосы — долгие сделки, светлые — быстрые. Медиана справа показывает типичный холд строки в днях. Строки с малым числом договоров (меньше 5) не показаны: по ним нельзя делать выводы.</p><p>Режим «первое касание» отвечает на вопрос, какие каналы приводят быстрых и долгих клиентов; «последнее» — какие каналы чаще закрывают сделку; «любой в цепочке» считает договор в каждом канале, который в нём был, поэтому суммы строк больше числа договоров.</p><p>Длинный холд при большом числе касаний обычно означает долгий прогрев или повторные обращения клиента, а не неэффективный канал.</p></div></details>
+    <div class="px-card">
+      <div class="px-cb-bar"><div class="px-seg px-seg-s" role="group" aria-label="Канал" id="hx-mode"><button type="button" data-v="first">Первое касание</button><button type="button" data-v="last">Последнее касание</button><button type="button" data-v="any">Любой в цепочке</button></div></div>
+      <div class="px-cb-leg" id="hx-leg"></div>
+    </div>
+    <div class="px-grid">
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">По каналам</span><span class="px-sub" id="hx-ch-sub"></span></div><div class="px-scroll"><table class="px-tbl px-hx" id="hx-ch" data-source="deals"><thead><tr class="h"><th class="l">Канал</th><th>Договоров</th><th class="l">Распределение по холду</th><th>Медиана</th></tr></thead><tbody></tbody></table></div></div>
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">По числу касаний до договора</span><span class="px-sub">Чем больше касаний, тем дольше холд?</span></div><div class="px-scroll"><table class="px-tbl px-hx" id="hx-tc" data-source="deals"><thead><tr class="h"><th class="l">Касаний</th><th>Договоров</th><th class="l">Распределение по холду</th><th>Медиана</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+  </section>
+
+  <section class="px-sec" id="other">
+    <h2 class="px-h2">«Прочее»: договоры без понятного источника</h2>
+    <p class="px-sub">Сюда попадают договоры, у которых Smartis не нашёл касаний вообще, или у которых основную долю занимают «Прямой трафик», «Сервисные расходы», «Реферальный трафик», «Другая реклама». Эти договоры нельзя честно записать ни на один рекламный канал.</p>
+    <details class="px-how"><summary>Как читать эти данные и что может помочь сматчить</summary><div>
+      <p>«Нет касаний» — Smartis не связал клиента ни с одним визитом или звонком. «Прямой трафик» — визит был, но без метки источника. Оба случая — потеря связки, а не показатель того, что реклама не работала.</p>
+      <p>Что помогает сопоставить: <b>источник в CRM</b> (в столбце видно, сколько договоров каждого источника ушло в «Прочее»); <b>Calltouch</b> по времени звонка для «Звонок» и «Колл трекинг»; <b>метки и ClientID в полях формы</b> для «Формы»; <b>создатель сделки</b> для «Агентство» (это брокерские договоры); <b>проекты с высокой долей</b> — проверить, подключены ли счётчик, колл-трекинг и формы.</p>
+      <p>Договоры того же клиента не помогают: у клиентов из «Прочего» других договоров с понятным каналом нет.</p></div></details>
+    <div class="px-tiles" id="ot-tiles" data-source="deals"></div>
+    <div class="px-grid">
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">Источник в CRM</span><span class="px-sub">Сколько договоров каждого источника ушло в «Прочее» и какая это доля источника</span></div><div class="px-hb" id="ot-src" data-source="deals"></div></div>
+      <div class="px-card"><div class="px-card-h"><span class="px-card-t">По проектам</span><span class="px-sub">Доля договоров проекта в «Прочем». Высокая доля — повод проверить отслеживание</span></div><div class="px-hb" id="ot-prj" data-source="deals"></div></div>
+    </div>
+    <details class="px-cb-deals"><summary id="ot-dsum">Договоры</summary>
+      <div class="px-tcard"><div class="px-scroll" style="max-height: 26rem"><table class="px-tbl" id="ot-dtable" data-source="deals">
+        <thead><tr class="h"><th class="l">Сделка</th><th class="l">Проект</th><th class="l">Дата</th><th>Сумма</th><th class="l">Причина</th><th class="l">Источник в CRM</th><th class="l">Цепочка</th></tr></thead><tbody></tbody></table></div></div>
+    </details>
+  </section>
+
   <section class="px-sec" id="chainb">
     <h2 class="px-h2">Конструктор цепочек</h2>
     <p class="px-sub">Соберите комбинацию каналов и посмотрите, сколько договоров она дала. Нажмите на канал один раз — договор должен его содержать (✓), второй раз — не должен (✕), третий — снять условие. Smartis отдаёт набор каналов в цепочке и их доли, но не точный порядок касаний; известны только первое и последнее касание. Учитываются договоры с касаниями в Smartis за выбранный период и проект.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Это не рейтинг каналов, а способ увидеть, в каких сочетаниях каналы встречаются в договорах. Условие «есть канал» отбирает договоры, где канал был хоть раз; «нет» исключает; «только отмеченные» оставляет цепочки без других каналов.</p><p>Число договоров здесь целое («канал участвовал в 9 договорах»), а вклад по линейной модели дробный («0,3 договора»): договор делится между всеми каналами цепочки. Поэтому цифры здесь и в таблице каналов отличаются, и оба верны.</p><p>Если у договоров с каналом очень длинная цепочка и большой холд, канал скорее участвует в долгом прогреве, чем приводит клиента напрямую. Цвет в блоке «Что ещё было в цепочке» показывает средний вклад канала в договор.</p><p>Первое и последнее касание берутся из моделей «Первый клик» и «Последний клик» и показывают только клики. Показы медийки там не видны; для них есть флажок «медийка в цепочке, но клика по ней не было».</p><p>Договоры без касаний в Smartis в конструктор не входят, их число показано над плитками. Если отобрано меньше 10 договоров, делать выводы рано.</p></div></details>
     <div class="px-card px-cb">
       <div class="px-cb-bar">
         <div class="px-seg px-seg-s" role="group" aria-label="Уровень" id="cb-level"><button type="button" data-v="ch">Каналы</button><button type="button" data-v="grp">Группы</button></div>
@@ -372,7 +436,8 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="projects">
     <h2 class="px-h2">По проектам</h2>
     <p class="px-sub">Нажмите на строку, чтобы отфильтровать всю страницу по проекту. Заголовки сортируют таблицу.</p>
-    <div class="px-legend"><span><i class="lp"></i>лучше ИТОГО больше чем на 10 %</span><span><i class="ln"></i>хуже ИТОГО больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROAS, ROI. Ниже — лучше: ДРР, CPO, CAC, цена целевого.</span></div>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>ДРР и CPO проектов сравнивайте осторожно: у ЖК разная цена объекта, срок сделки и доля брокеров, поэтому один и тот же бюджет даёт разный результат.</p><p>В проектах с единицами договоров цифры скачут от месяца к месяцу. Смотрите на весь период и на динамику, а не на один месяц.</p></div></details>
+    <div class="px-legend"><span><i class="lp"></i>лучше ИТОГО больше чем на 10 %</span><span><i class="ln"></i>хуже ИТОГО больше чем на 10 %</span><span>Выше — лучше: CR. Ниже — лучше: ДРР, норматив, CPO, CAC, цена целевого.</span></div>
 
     <div class="px-tcard">
       <div class="px-scroll">
@@ -391,8 +456,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
               <th class="gs" data-field="revenue"><button type="button" data-k="revenue">Сумма договоров</button></th>
               <th data-field="budget"><button type="button" data-k="budget">Бюджет</button></th>
               <th class="gs" data-field="drr"><button type="button" data-k="drr">ДРР</button></th>
-              <th data-field="roas"><button type="button" data-k="roas">ROAS</button></th>
-              <th data-field="roi"><button type="button" data-k="roi">ROI</button></th>
+              <th data-field="norm"><button type="button" data-k="norm">Норматив</button></th>
               <th data-field="cpo"><button type="button" data-k="cpo">CPO</button></th>
               <th data-field="cac"><button type="button" data-k="cac">CAC</button></th>
               <th class="gs" data-field="hold_median"><button type="button" data-k="hold_median">Холд, медиана</button></th>
@@ -410,6 +474,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="deals">
     <h2 class="px-h2">Договоры</h2>
     <p class="px-sub">Подписанные договоры за выбранный период. «По клиентам» собирает договоры одного человека в одну строку (обезличенный ключ контакта), стрелка раскрывает все его договоры. В фильтрах под заголовками можно отметить несколько значений, итоги пересчитываются под отобранное.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Один человек — одна строка в режиме «По клиентам», стрелка раскрывает все его договоры; «Все договоры» показывает каждый договор отдельно.</p><p>Цепочка каналов — набор каналов в договоре; порядок касаний Smartis не отдаёт. Если у договора много касаний и длинный холд, смотрите на цепочку, а не на источник в CRM: источник в CRM заполняет менеджер, и он часто «Агентство» или «Другое».</p><p>Итоги над таблицей пересчитываются под выбранные фильтры.</p></div></details>
     <div class="px-dsum">
       <div class="px-card"><span class="px-card-t">Результат</span><div id="dl-res" data-source="deals"></div></div>
       <div class="px-card"><span class="px-card-t">Деньги и путь клиента</span><div id="dl-mon" data-source="deals"></div></div>
@@ -463,6 +528,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="channels">
     <h2 class="px-h2">Интернет-каналы и источники</h2>
     <p class="px-sub">Группы каналов по классификации Smartis ПСК. Интернет: контекст, медийка, реклама в соцсетях, SEO, программатик, базы недвижимости, лидогенерация, Карты, классифайды, SMM, органика соцсетей, рассылки. Офлайн-реклама: наружная, листовки, пресса, радио, ТВ, электрички, PR, посещение офиса, «забор» и все каналы «Оффлайн». Прочее: прямой трафик, рефералы, «Другая реклама», «Другое», сервисные расходы. Обращения, целевые, договоры и сумма распределены по каналам выбранной моделью атрибуции Smartis. Бюджет не зависит от модели. От модели зависит, какой канал получает договор: тот, что привёл клиента (первое касание), тот, что закрыл (последнее), или все поровну (линейная). В линейных моделях договоры дробные.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Договоры по каналам дробные: линейная модель делит каждый договор поровну между касаниями цепочки (с post-view), поэтому сумма по каналам равна итогу.</p><p>Зелёный и красный цвет — лучше или хуже итога больше чем на 10 %. У каналов с малой выборкой (единицы целевых и договоров) цвет и проценты ненадёжны.</p><p>В «Прочее» входит «Другое» — договоры без источника, и у него нет рекламного бюджета. ДРР и CPO прочего показывать эффективность не могут.</p><p>Бюджет канала и договоры месяца относятся к разным обращениям: договоры приходят позже расходов. Для выводов берите период от 3 месяцев.</p></div></details>
     <div class="px-bar">
       <label for="px-model">Модель атрибуции
         <select class="px-in" id="px-model">
@@ -474,13 +540,13 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     <p class="px-sub" id="ch-cnote" style="color: var(--color-warn)"></p>
     <p class="px-sub" id="ch-brnote" hidden>«Только брокеры»: каналы посчитаны прямо по брокерским договорам — каждому каналу его доля в цепочке договора (модель «Линейная с post-view», другие модели для этого вида недоступны). Обращения и бюджет интернета на брокерские и прямые сделки не делятся, поэтому там прочерки; бюджет показан только у канала «Брокеры/Агенты».</p>
     <div class="px-card px-gv" id="grp-tiles" data-source="channels"></div>
-    <div class="px-legend"><span><i class="lp"></i>лучше ИТОГО больше чем на 10 %</span><span><i class="ln"></i>хуже ИТОГО больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROAS, ROI. Ниже — лучше: ДРР, CPO, CAC, цена целевого.</span></div>
+    <div class="px-legend"><span><i class="lp"></i>лучше ИТОГО больше чем на 10 %</span><span><i class="ln"></i>хуже ИТОГО больше чем на 10 %</span><span>Выше — лучше: CR. Ниже — лучше: ДРР, норматив, CPO, CAC, цена целевого.</span></div>
 
     <div class="px-tcard">
       <div class="px-scroll">
         <table class="px-tbl" id="ch-table" data-source="channels channels_pl" data-row-key="view,project,period,model,key">
           <thead>
-            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="4">Эффективность</th></tr>
+            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="3">Эффективность</th></tr>
             <tr class="h">
               <th class="l" data-field="channel">Канал / площадка</th>
               <th class="gs" data-field="leads">Обращения</th>
@@ -491,7 +557,6 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
               <th class="gs" data-field="revenue">Сумма договоров</th>
               <th data-field="budget">Бюджет</th>
               <th class="gs" data-field="drr">ДРР</th>
-              <th data-field="roi">ROI</th>
               <th data-field="cpl_target">За целевое</th>
               <th data-field="cpo">CPO</th>
             </tr>
@@ -515,7 +580,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
       <li>Произвольный период (поля «с … по …» вверху): обращения, целевые, договоры, сумма и бюджет считаются по дням, холд, касания, клиенты и цепочки — по договорам, подписанным в эти даты. Таблица каналов в этом режиме берёт целые месяцы, которые пересекаются с диапазоном.</li>
       <li>Во всём отчёте исключены кладовые помещения и паркинги: фильтр Smartis «Битрикс24: Тип объекта» (#121246) не равен «Кладовое помещение» и «Паркинг». Фильтр действует только на показатели «Договор подписан» и «Сумма договоров подписан»: обращения, целевые и бюджет по типу объекта не делятся, поэтому остаются полными. Из-за этого CPO, CAC и ДРР считаются как полный бюджет к договорам без паркингов и кладовых.</li>
       <li>Технические сделки исключены везде: договоры, суммы, холд, касания и каналы. Это сделки, у которых в Битрикс24 «Пользователь, создавший сделку» — Болознева, Долгих или Агафонова. В Smartis для этого используется фильтр по этому полю, поштучный список с ним совпадает. На обращения правило почти не влияет: этими менеджерами создано 3 обращения из 6 531, они оставлены.</li>
-      <li>ДРР = бюджет / сумма × 100 %. ROAS = сумма / бюджет. ROI = (сумма − бюджет) / бюджет × 100 %. CPO = бюджет / договоры. CAC = бюджет / уникальные клиенты с договором.</li>
+      <li>ДРР = бюджет / сумма × 100 %. Норматив (показатель Smartis) = бюджет без брокерских комиссий / сумма ВСЕХ подписанных договоров, включая брокерские, × 100 %; ДРР брокеров = бюджет брокеров / та же сумма. ROAS и ROI не показываем: для недвижимости они почти ничего не добавляют. CPO = бюджет / договоры. CAC = бюджет / уникальные клиенты с договором.</li>
       <li>CR в договор сравнивает договоры и целевые одного периода. Договоры этого периода часто выросли из обращений прошлых месяцев, поэтому это ориентир, а не когорта.</li>
       <li>Холд и касания посчитаны по каждому договору. У части договоров Smartis не нашёл ни одного касания (часто это сделки через агентства). Они показаны отдельной строкой и не входят в средние.</li>
       <li>Холд считается от самого первого касания этого клиента, которое знает Smartis. У клиентов, которые возвращаются через год-два, он получается очень длинным, поэтому ориентируйтесь на медиану.</li>
@@ -529,6 +594,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="i-eff">
     <h2 class="px-h2">Эффективность интернета</h2>
     <p class="px-sub">Атрибуция Smartis «Линейная с post-view», окно без ограничения: каждое касание в цепочке, включая показы медийки, получает равную долю обращения и договора. «Все сделки» учитывают и вклад интернета в брокерские договоры, «Без брокерских» — только договоры без брокеров.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Здесь считаются только интернет-каналы по линейной модели с post-view: показы медийки тоже получают долю договора.</p><p>Интернет работает вместе с брокерами и оффлайном, поэтому ДРР интернета показывает вклад в договоры, а не то, что интернет «привёл» их один.</p></div></details>
     <div class="px-tiles">
       <div class="px-tile"><span class="px-lab">Договоры от интернета</span><span class="px-big im dash-skeleton" data-source="inet_channels" data-field="deals">—</span><span class="px-note">доля в договорах: <span id="i-share-deals">—</span></span></div>
       <div class="px-tile"><span class="px-lab">Сумма договоров</span><span class="px-big im dash-skeleton" data-source="inet_channels" data-field="revenue">—</span><span class="px-note">доля в сумме: <span id="i-share-rev">—</span></span></div>
@@ -539,14 +605,14 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     </div>
     <p class="px-sub">Брокерские договоры и вклад интернета в них разобраны во вкладке «Брокеры».</p>
     <p class="px-sub" id="i-brnote" hidden>«Только брокеры»: договоры и суммы посчитаны по брокерским договорам — каждому интернет-каналу его доля в цепочке договора. Это вклад интернета в сделки брокеров. Бюджет и обращения интернета на брокерские и прямые сделки не делятся, поэтому там прочерки.</p>
-    <div class="px-legend"><span><i class="lp"></i>лучше итога интернета больше чем на 10 %</span><span><i class="ln"></i>хуже больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROI. Ниже — лучше: ДРР, CPO, цена целевого.</span></div>
+    <div class="px-legend"><span><i class="lp"></i>лучше итога интернета больше чем на 10 %</span><span><i class="ln"></i>хуже больше чем на 10 %</span><span>Выше — лучше: CR. Ниже — лучше: ДРР, CPO, цена целевого.</span></div>
     <p class="px-sub" id="i-ch-cnote" style="color: var(--color-warn)"></p>
     <div class="px-bar"><label for="i-px-places"><input type="checkbox" id="i-px-places" checked> Показать площадки (только за весь период)</label></div>
     <div class="px-tcard">
       <div class="px-scroll">
         <table class="px-tbl" id="i-ch-table" data-source="inet_channels" data-row-key="view,project,period,key">
           <thead>
-            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="4">Эффективность</th></tr>
+            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="3">Эффективность</th></tr>
             <tr class="h">
               <th class="l" data-field="channel">Канал / площадка</th>
               <th class="gs" data-field="leads">Обращения</th>
@@ -557,7 +623,6 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
               <th class="gs" data-field="revenue">Сумма договоров</th>
               <th data-field="budget">Бюджет</th>
               <th class="gs" data-field="drr">ДРР</th>
-              <th data-field="roi">ROI</th>
               <th data-field="cpl_target">За целевое</th>
               <th data-field="cpo">CPO</th>
             </tr>
@@ -572,6 +637,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="i-media">
     <h2 class="px-h2" id="i-media-h">Медийная реклама в подписанных договорах</h2>
     <p class="px-sub">По каждому подписанному договору считается, сколько касаний в его цепочке пришлось на канал «Медийная реклама», включая post-view (показы без клика). Договоры без касаний в Smartis в доли не входят.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Медийка работает показами, а не кликами, поэтому по клику она почти не видна. В линейной модели с post-view она получает долю там, где был показ.</p><p>Смотрите, в какой доле договоров медийка встречалась и как рано: ранний показ означает, что она, возможно, формирует знание, а не закрывает сделку. Прямо сравнивать её CPO с контекстом нельзя.</p></div></details>
     <div class="px-tiles">
       <div class="px-tile"><span class="px-lab">Договоров с медийкой</span><span class="px-big mm dash-skeleton" data-source="inet_media_summary" data-field="deals_with_media">—</span><span class="px-note">из <span class="mm" data-source="inet_media_summary" data-field="deals_with_touches">—</span> с касаниями</span></div>
       <div class="px-tile"><span class="px-lab">Доля договоров с медийкой</span><span class="px-big mm dash-skeleton" data-source="inet_media_summary" data-field="share_with_media">—</span><span class="px-note">с любым интернетом: <span class="mm" data-source="inet_media_summary" data-field="share_with_inet">—</span></span></div>
@@ -608,6 +674,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="i-broker">
     <h2 class="px-h2">Касания до брокера: интернет и медийка</h2>
     <p class="px-sub">Брокерские договоры, у которых нашлось первое брокерское обращение клиента (обращения с января 2025 года). «До брокера» — касания в цепочке этого обращения, без самого брокерского касания. «После брокера» — касания договора сверх них. Медийка считается вместе с post-view, то есть с показами без клика. Блок учитывает период и проект.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Брокерский договор подписан через брокера, но клиент мог увидеть рекламу раньше. Блок показывает интернет- и медийные касания до появления брокера в цепочке и после него.</p><p>Если до брокера много касаний интернета и медийки, реклама подготавливает клиента, а результат уходит на комиссию брокера. Порядок касаний Smartis отдаёт не напрямую, поэтому «до» и «после» определяются по датам касаний.</p></div></details>
     <p class="px-sub" id="bp-empty" style="color: var(--color-warn)" hidden>Данных о брокерских обращениях пока нет: они появятся после следующего обновления.</p>
     <div class="px-tiles" data-source="broker_path">
       <div class="px-tile"><span class="px-lab">Брокерских договоров</span><span class="px-big" id="bp-deals">—</span><span class="px-note">сопоставлено с брокерским обращением: <span id="bp-matched">—</span></span></div>
@@ -684,6 +751,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="i-deals">
     <h2 class="px-h2">Договоры и медийные касания</h2>
     <p class="px-sub">Список следует фильтрам вверху страницы.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Список договоров, в которых были показы или клики медийной рекламы. Он помогает посмотреть конкретные цепочки и проверить цифры блока выше.</p><p>Сумма договора учитывается целиком, а вклад медийки в нём — доля по линейной модели.</p></div></details>
     <div class="px-tcard">
       <div class="px-ttools">
         <span class="px-note" id="i-deal-count"></span>
@@ -715,15 +783,16 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="o-eff">
     <h2 class="px-h2">Эффективность оффлайна</h2>
     <p class="px-sub">Оффлайн-каналы Smartis ПСК: наружная реклама, листовки, пресса, радио, ТВ, электрички, PR, посещение офиса, «забор» и каналы «Оффлайн (…)». Атрибуция «Линейная с post-view», окно без ограничения: каждое касание в цепочке клиента получает равную долю договора. Все сделки, кроме технических.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Оффлайн-реклама не кликается, поэтому её эффект виден только по касаниям: звонкам по отслеживаемым номерам и визитам в офис. Наружка и производство часто показывают нули по договорам, но бюджет у них есть.</p><p>Нулевой результат не значит, что оффлайн не работает: Smartis просто не может связать показ щита с договором. Делайте выводы по цепочкам клиентов, а не по ДРР.</p></div></details>
     <div class="px-tiles" id="o-tiles" data-source="inet_channels"></div>
-    <div class="px-legend"><span><i class="lp"></i>лучше итога оффлайна больше чем на 10 %</span><span><i class="ln"></i>хуже больше чем на 10 % (ROI ниже нуля всегда)</span><span>Выше — лучше: CR, ROI. Ниже — лучше: ДРР, CPO, цена целевого.</span></div>
+    <div class="px-legend"><span><i class="lp"></i>лучше итога оффлайна больше чем на 10 %</span><span><i class="ln"></i>хуже больше чем на 10 %</span><span>Выше — лучше: CR. Ниже — лучше: ДРР, CPO, цена целевого.</span></div>
     <p class="px-sub" id="o-cnote" style="color: var(--color-warn)"></p>
     <div class="px-bar"><label for="o-places"><input type="checkbox" id="o-places" checked> Показать площадки (только за весь период)</label></div>
     <div class="px-tcard">
       <div class="px-scroll">
         <table class="px-tbl" id="o-table" data-source="inet_channels">
           <thead>
-            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="4">Эффективность</th></tr>
+            <tr class="g"><th></th><th class="gs" colspan="5">Воронка</th><th class="gs" colspan="2">Деньги</th><th class="gs" colspan="3">Эффективность</th></tr>
             <tr class="h">
               <th class="l" data-field="channel">Канал / площадка</th>
               <th class="gs" data-field="leads">Обращения</th>
@@ -734,7 +803,6 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
               <th class="gs" data-field="revenue">Сумма договоров</th>
               <th data-field="budget">Бюджет</th>
               <th class="gs" data-field="drr">ДРР</th>
-              <th data-field="roi">ROI</th>
               <th data-field="cpl_target">За целевое</th>
               <th data-field="cpo">CPO</th>
             </tr>
@@ -750,6 +818,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   <section class="px-sec" id="o-chain">
     <h2 class="px-h2">Оффлайн в цепочках договоров</h2>
     <p class="px-sub">Сколько подписанных договоров хотя бы раз касались оффлайн-канала по полной цепочке Smartis и каких именно. Договор может касаться нескольких каналов, поэтому сумма строк больше итога.</p>
+    <details class="px-how"><summary>Как читать эти данные</summary><div><p>Показаны цепочки договоров, в которых были оффлайн-касания, и какие каналы шли с ними. Так видно, к каким каналам оффлайн приводит клиентов или какие каналы его дополняют.</p><p>Выборка маленькая, поэтому смотрите на повторяющиеся сочетания, а не на отдельные договоры.</p></div></details>
     <div class="px-tiles" id="o-ctiles" data-source="deals"></div>
     <div class="px-grid">
       <div class="px-card"><div class="px-card-h"><span class="px-card-t">Договоры с касанием канала</span><span class="px-sub">Доля — от договоров, у которых Smartis нашёл касания</span></div><div class="px-hb" id="o-bars" data-source="deals"></div></div>
@@ -770,7 +839,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
       <li>«Без брокеров»: фильтр «Канал не включает Брокеры, Брокеры/Агенты» и без сделок Филимонова, Семеновой, Богатыревой, Пелюховой, Петровой Э.</li>
       <li>Интернет-каналы по классификации Smartis ПСК: контекст, медийка, реклама в соцсетях, SEO, программатик, базы недвижимости, лидогенерация, Карты, классифайды, SMM, органика соцсетей, рассылки.</li>
       <li>Медийные касания договора = все касания × доля канала «Медийная реклама» в цепочке по этой модели. Если медийка в цепочке есть, но доля меньше половины касания, считается одно касание.</li>
-      <li>Сумма и средний чек — полная стоимость договоров. ROI считается от неё, а не от маржи, поэтому получается очень высоким.</li>
+      <li>Сумма и средний чек — полная стоимость договоров, а не маржа или выручка с учётом рассрочки.</li>
       <li>Данные обновляются автоматически из Smartis; номера сделок и данные клиентов в публичную версию не выгружаются.</li>
     </ul>
   </section>
@@ -839,8 +908,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   const F = {
     leads: cnt, target: cnt, deals: cnt, unique_clients: cnt, deals_with_touches: cnt,
     revenue: rub, budget: rub, cpo: rub, cac: rub, cpl_target: rub,
-    drr: (v) => isNum(v) ? n2.format(v) + ' %' : '—', roi: (v) => isNum(v) ? nf.format(Math.round(v)) + ' %' : '—',
-    roas: (v) => isNum(v) ? n1.format(v) + '×' : '—',
+    drr: (v) => isNum(v) ? n2.format(v) + ' %' : '—', norm: (v) => isNum(v) ? n2.format(v) + ' %' : '—', drr_brk: (v) => isNum(v) ? n2.format(v) + ' %' : '—', budget_own: rub, budget_brk: rub,
     cr_lead_target: (v) => isNum(v) ? n1.format(v) + ' %' : '—', cr_target_deal: (v) => isNum(v) ? n1.format(v) + ' %' : '—',
     hold_median: (v) => isNum(v) ? n1.format(v) : '—', hold_avg: (v) => isNum(v) ? n1.format(v) : '—',
     touches_avg: (v) => isNum(v) ? n1.format(v) : '—', ad_touches_avg: (v) => isNum(v) ? n1.format(v) : '—',
@@ -883,8 +951,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     const U = new Set(ds.map((r) => r.client)).size, L = a.leads, T = a.target, Dl = Math.round(a.deals), R = a.revenue, B = a.budget;
     const avg = (k) => wt.length ? Math.round(wt.reduce((s, r) => s + Number(r[k]), 0) / wt.length * 10) / 10 : '';
     return { view, project, period: CUSTOM, leads: Math.round(L), target: Math.round(T), deals: Dl, revenue: R, budget: B,
-      cr_lead_target: L ? T / L * 100 : '', cr_target_deal: T ? Dl / T * 100 : '', drr: R ? B / R * 100 : '', roas: B ? R / B : '',
-      roi: B ? (R - B) / B * 100 : '', cpo: Dl ? B / Dl : '', cac: U && Dl ? B / U : '', cpl_target: T ? B / T : '',
+      cr_lead_target: L ? T / L * 100 : '', cr_target_deal: T ? Dl / T * 100 : '', drr: R ? B / R * 100 : '', norm: '', drr_brk: '', cpo: Dl ? B / Dl : '', cac: U && Dl ? B / U : '', cpl_target: T ? B / T : '',
       hold_median: h.length ? median(h) : '', hold_avg: h.length ? Math.round(h.reduce((s, x) => s + x, 0) / h.length * 10) / 10 : '',
       deals_with_touches: wt.length, touches_avg: avg('touches'), ad_touches_avg: avg('ad_touches'), unique_clients: U,
       excl_deals: Math.max(0, Math.round(raw.deals - a.deals)) };
@@ -1021,7 +1088,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
       row.append(lab, tr, v); el.append(row);
     });
   }
-  const HI = new Set(['cr_lead_target', 'cr_target_deal', 'roas', 'roi']), LO = new Set(['drr', 'cpo', 'cac', 'cpl_target']);
+  const HI = new Set(['cr_lead_target', 'cr_target_deal']), LO = new Set(['drr', 'norm', 'drr_brk', 'cpo', 'cac', 'cpl_target']);
   const tone = (c, k, v, ref) => {
     if (!(HI.has(k) || LO.has(k)) || !isNum(v)) return;
     const x = Number(v);
@@ -1087,7 +1154,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     const pb = $('proj-table').tBodies[0], pf = $('proj-table').tFoot; pb.replaceChildren(); pf.replaceChildren();
     markSort('proj-table', sortState.proj);
     const GS = new Set(['leads', 'revenue', 'drr', 'hold_median']);
-    const cols = ['project', 'leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'roas', 'roi', 'cpo', 'cac', 'hold_median', 'touches_avg', 'ad_touches_avg'];
+    const cols = ['project', 'leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'norm', 'cpo', 'cac', 'hold_median', 'touches_avg', 'ad_touches_avg'];
     if (S.status === 'ok') {
       const plist = [...new Set(S.data.filter((r) => V(r) && r.project !== ALL).map((r) => r.project))];
       const rows = (isC ? plist.map((p) => customRow(view, p, cf0, ct0)).filter((r) => r && (r.leads || r.deals || r.budget))
@@ -1307,10 +1374,10 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
         gt.append(leg, bw, note, cards);
       }
       const showOff = $('px-offline').checked, showPl = $('px-places').checked;
-      const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'roi', 'cpl_target', 'cpo'];
+      const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'cpl_target', 'cpo'];
       const GSC = new Set(['leads', 'revenue', 'drr']);
-      const NA = new Set(['leads', 'target', 'cr_lead_target', 'cr_target_deal', 'budget', 'drr', 'roi', 'cpl_target', 'cpo']);
-      const fmt = (k, v, r) => (isBr && NA.has(k) && !(r && Number(r.budget) > 0 && ['budget', 'drr', 'roi', 'cpo'].includes(k))) ? '—' : k === 'deals' ? (isNum(v) ? n1.format(v) : '—') : (k === 'leads' || k === 'target') ? (isNum(v) ? nf.format(Math.round(v)) : '—') : F[k] ? F[k](v) : v;
+      const NA = new Set(['leads', 'target', 'cr_lead_target', 'cr_target_deal', 'budget', 'drr', 'cpl_target', 'cpo']);
+      const fmt = (k, v, r) => (isBr && NA.has(k) && !(r && Number(r.budget) > 0 && ['budget', 'drr', 'cpo'].includes(k))) ? '—' : k === 'deals' ? (isNum(v) ? n1.format(v) : '—') : (k === 'leads' || k === 'target') ? (isNum(v) ? nf.format(Math.round(v)) : '—') : F[k] ? F[k](v) : v;
       const put = (parent, r, label, cls, sub) => {
         const tr = document.createElement('tr'); if (cls) tr.className = cls;
         tr.dataset.key = [r.view, r.project, r.period, r.model, r.key].map(enc).join(',');
@@ -1404,7 +1471,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
   ['i-px-places', 'i-flt-media'].forEach((id) => $(id).addEventListener('change', () => draw()));
   $('i-flt-q').addEventListener('input', () => draw());
   const VNOTE = { 'С брокерами': 'Все сделки, кроме технических.', 'Без брокеров': 'Без брокерских каналов и сделок брокерских менеджеров. Технические тоже исключены.' };
-  const HI = new Set(['cr_lead_target', 'cr_target_deal', 'roi']), LO = new Set(['drr', 'cpo', 'cpl_target']);
+  const HI = new Set(['cr_lead_target', 'cr_target_deal']), LO = new Set(['drr', 'cpo', 'cpl_target']);
   const tone = (c, k, v, ref) => {
     if (!(HI.has(k) || LO.has(k)) || !isNum(v)) return;
     const x = Number(v);
@@ -1450,7 +1517,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     const mine = isC ? customChannels(base0, from, to) : base0.filter((r) => r.period === period);
     $('i-ch-cnote').textContent = isC ? (mine.months && mine.months.length ? 'Эффективность каналов в произвольном периоде считается по целым месяцам: ' + mine.months.join(', ') + '. Площадки — только за весь период. Блок про медийку считается точно по датам.' : 'В выбранном диапазоне нет месяцев с данными по каналам.') : '';
     const g = mine.find((r) => r.level === 'group' && r.grp === 'Интернет'), tot = mine.find((r) => r.level === 'total');
-    const isBr = view === 'Только брокеры', NAi = new Set(['leads', 'target', 'cr_lead_target', 'cr_target_deal', 'budget', 'drr', 'roi', 'cpl_target', 'cpo']);
+    const isBr = view === 'Только брокеры', NAi = new Set(['leads', 'target', 'cr_lead_target', 'cr_target_deal', 'budget', 'drr', 'cpl_target', 'cpo']);
     $('i-brnote').hidden = !isBr;
     document.querySelectorAll('.im').forEach((el) => {
       const k = el.dataset.field; el.classList.toggle('dash-skeleton', CH.status === 'loading');
@@ -1460,7 +1527,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     $('i-share-deals').textContent = g && tot && Number(tot.deals) ? n1.format(g.deals / tot.deals * 100) + ' %' : '—';
     $('i-share-rev').textContent = g && tot && Number(tot.revenue) ? n1.format(g.revenue / tot.revenue * 100) + ' %' : '—';
     const cb = $('i-ch-table').tBodies[0], cf = $('i-ch-table').tFoot; cb.replaceChildren(); cf.replaceChildren();
-    const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'roi', 'cpl_target', 'cpo'];
+    const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'cpl_target', 'cpo'];
     const GSC = new Set(['leads', 'revenue', 'drr']);
     const put = (parent, r, label, cls, ref) => {
       const tr = document.createElement('tr'); if (cls) tr.className = cls;
@@ -1682,7 +1749,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
       ['leads', 'target', 'deals', 'revenue', 'budget'].forEach((k) => { x[k] += Number(r[k]) || 0; }); acc.set(r.key, x); });
     const out = [...acc.values()].map(derive); out.months = labs; return out;
   }
-  const HI = new Set(['cr_lead_target', 'cr_target_deal', 'roi']), LO = new Set(['drr', 'cpo', 'cpl_target']);
+  const HI = new Set(['cr_lead_target', 'cr_target_deal']), LO = new Set(['drr', 'cpo', 'cpl_target']);
   const tone = (c, k, v, ref) => {
     if (!(HI.has(k) || LO.has(k)) || !isNum(v)) return; const x = Number(v);
     if (k === 'roi' && x < 0) { c.classList.add('px-neg'); return; }
@@ -1722,7 +1789,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
       tile(tl, 'Цена целевого', rub(g.cpl_target), 'целевых: ' + F.target(g.target));
     }
     const cb = $('o-table').tBodies[0], cf = $('o-table').tFoot; cb.replaceChildren(); cf.replaceChildren();
-    const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'roi', 'cpl_target', 'cpo'], GSC = new Set(['leads', 'revenue', 'drr']);
+    const cols = ['leads', 'target', 'cr_lead_target', 'deals', 'cr_target_deal', 'revenue', 'budget', 'drr', 'cpl_target', 'cpo'], GSC = new Set(['leads', 'revenue', 'drr']);
     const put = (parent, r, label, cls, ref) => {
       const tr = document.createElement('tr'); if (cls) tr.className = cls;
       const c0 = td(tr, label, 'l'); if (cls === 'px-pl') c0.style.paddingLeft = '28px';
@@ -1893,6 +1960,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     // итог + состав цепочек
     const hero = $('cb-hero'); hero.replaceChildren();
     const hb = document.createElement('b'); hb.textContent = nf.format(M.length) + ' договоров'; const hs = document.createElement('span'); hs.textContent = rub(amt(M)) + (base.length ? ' · ' + n1.format(M.length / base.length * 100) + ' % от договоров с касаниями' : ''); hero.append(hb, hs);
+    const noT = DE.data.filter((r) => r.view === view && (project === ALL || r.project === project) && (isC ? r.sign_date >= from && r.sign_date <= to : period === FULL || r.period === period) && !(Number(r.touches) > 0)); if (noT.length) { const hn = document.createElement('span'); hn.textContent = 'Не входят: ' + nf.format(noT.length) + ' договоров на ' + rub(noT.reduce((q, r) => q + Number(r.amount || 0), 0)) + ' без касаний в Smartis. Всего договоров: ' + nf.format(base.length + noT.length); hn.style.flexBasis = '100%'; hero.append(hn); }
     const mix = $('cb-mix'), leg = $('cb-leg'); mix.replaceChildren(); leg.replaceChildren();
     const tot = new Map(); M.forEach((x) => x.sh.forEach((v, c) => tot.set(c, (tot.get(c) || 0) + v))); const ts = [...tot.values()].reduce((a, b) => a + b, 0) || 1;
     [...tot.entries()].sort((a, b) => b[1] - a[1]).forEach(([c, v], i) => { const p = v / ts * 100; const d = document.createElement('div'); d.style.width = p + '%'; d.style.setProperty('--px-g', colOf(c)); d.title = c + ': ' + n1.format(p) + ' %'; if (p > 9) d.textContent = c + ' ' + Math.round(p) + ' %'; mix.append(d); if (i < 10) { const l = document.createElement('span'); const ic = document.createElement('i'); ic.style.setProperty('--px-g', colOf(c)); l.append(ic, c + ' ' + n1.format(p) + ' %'); leg.append(l); } });
@@ -1942,11 +2010,148 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
 <script>
 
 (() => {
+  const FULL = 'Весь период', CUSTOM = 'Произвольный период', ALL = 'Все проекты';
+  const nf = new Intl.NumberFormat('ru-RU'), n1 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
+  const $ = (id) => document.getElementById(id);
+  const MON = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const mi = (p) => MON.findIndex((m) => String(p).startsWith(m));
+  const rub = (x) => Math.abs(x) >= 1e9 ? n1.format(x / 1e9) + ' млрд' : Math.abs(x) >= 1e6 ? n1.format(x / 1e6) + ' млн' : nf.format(Math.round(x));
+  const median = (a) => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  const PAL = ['#2f6fdf', '#e8590c', '#2f9e6b', '#8e44ad', '#d6336c', '#f2b01e', '#0ca5b0', '#7b8794', '#a0522d', '#5c7cfa', '#82c91e', '#c2255c', '#364fc7', '#e67700', '#087f5b', '#9c36b5', '#ff8787', '#495057'];
+  const KNOWN = ['Контекстная реклама', 'SEO', 'Медийная реклама', 'Прямой трафик', 'Базы недвижимости', 'Брокеры/Агенты', 'Посещение в офис', '6403838/6565 (забор)', 'Сервисные расходы', 'Реферальный трафик', 'Реклама в соц.сетях', 'Другая реклама', 'Рассылки', 'Карты', 'Программатик', 'Пресса', 'Другое'];
+  const colOf = (c) => { let k = KNOWN.indexOf(c); if (k < 0) { KNOWN.push(c); k = KNOWN.length - 1; } return PAL[k % PAL.length]; };
+  const GR = ['Интернет', 'Офлайн-реклама', 'Брокеры', 'Прочее'];
+  const GC = () => ({ 'Интернет': dash.colors[0], 'Офлайн-реклама': dash.colors[1], 'Брокеры': dash.colors[3] || dash.colors[2], 'Прочее': 'var(--cds-chart-muted)' });
+  const st = { bm: 'n', hx: 'first' };
+  try { const s = JSON.parse(localStorage.getItem('psk-extra') || 'null'); if (s) { if (['n', 'p', 'r'].includes(s.bm)) st.bm = s.bm; if (['first', 'last', 'any'].includes(s.hx)) st.hx = s.hx; } } catch (e) { /* нет хранилища */ }
+  const save = () => { try { localStorage.setItem('psk-extra', JSON.stringify(st)); } catch (e) { /* ок */ } };
+  const td = (tr, t, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = t; tr.append(c); return c; };
+  $('bm-mode').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; st.bm = b.dataset.v; save(); drawBm(); });
+  $('hx-mode').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; st.hx = b.dataset.v; save(); drawHx(); });
+
+  function drawBm() {
+    const sec = $('bymonth'); if (!sec || sec.hidden) return;
+    const P = dash.params(), view = P.view || 'С брокерами', project = P.project || ALL, model = view === 'Только брокеры' ? 'Линейная с post-view' : (P.model || 'Линейная');
+    const CH = dash.data('channels'); if (CH.status !== 'ok') return;
+    $('bm-mode').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === st.bm)));
+    const rows = CH.data.filter((r) => r.level === 'group' && r.view === view && r.project === project && r.model === model && r.period !== FULL && mi(r.period) >= 0);
+    const months = [...new Set(rows.map((r) => r.period))].sort((a, b) => mi(a) - mi(b));
+    const key = st.bm === 'r' ? 'revenue' : 'deals', gc = GC();
+    const chart = $('bm-chart'), leg = $('bm-leg'); chart.replaceChildren(); leg.replaceChildren();
+    $('bm-note').textContent = 'Модель: ' + model + (view === 'Только брокеры' ? '. Только брокерские договоры.' : '');
+    if (!months.length) { const p = document.createElement('p'); p.className = 'px-sub'; p.textContent = 'Нет данных'; chart.append(p); return; }
+    const val = (m, g) => { const r = rows.find((x) => x.period === m && x.grp === g); return r ? Number(r[key]) || 0 : 0; };
+    const totals = months.map((m) => GR.reduce((s, g) => s + val(m, g), 0)), mx = Math.max(1, ...totals);
+    months.forEach((m, i) => {
+      const col = document.createElement('div'); col.className = 'px-bm-col';
+      const stack = document.createElement('div'); stack.className = 'px-bm-stack';
+      const h = st.bm === 'p' ? 100 : totals[i] / mx * 100; stack.style.height = h + '%';
+      GR.slice().reverse().forEach((g) => {
+        const v = val(m, g); if (!v) return; const share = totals[i] ? v / totals[i] * 100 : 0;
+        const seg = document.createElement('div'); seg.style.flex = String(v); seg.style.background = gc[g];
+        seg.title = m + ' · ' + g + ': ' + (st.bm === 'r' ? rub(v) + ' ₽' : n1.format(v) + ' дог.') + ' (' + n1.format(share) + ' %)';
+        if (share >= 12) seg.textContent = st.bm === 'p' ? Math.round(share) + '%' : st.bm === 'r' ? rub(v) : n1.format(v);
+        stack.append(seg);
+      });
+      const tot = document.createElement('div'); tot.className = 'px-bm-tot'; tot.textContent = st.bm === 'p' ? '' : st.bm === 'r' ? rub(totals[i]) : n1.format(totals[i]);
+      const lab = document.createElement('div'); lab.className = 'px-bm-lab'; lab.textContent = m.replace(/\s*\(.*/, '').slice(0, 3) + (/\(/.test(m) ? '*' : '');
+      const wrap = document.createElement('div'); wrap.className = 'px-bm-wrap'; wrap.append(tot, stack); col.append(wrap, lab); chart.append(col);
+    });
+    GR.forEach((g) => { const s = document.createElement('span'); const i = document.createElement('i'); i.style.setProperty('--px-g', gc[g]); s.append(i, g); leg.append(s); });
+    if (months.some((m) => /\(/.test(m))) { const s = document.createElement('span'); s.textContent = '* месяц неполный'; leg.append(s); }
+  }
+
+  const BK = [[0, 7, '0–7 дн.'], [8, 30, '8–30'], [31, 90, '31–90'], [91, 180, '91–180'], [181, 365, '181–365'], [366, 1e9, 'больше года']];
+  const shade = (i) => 'color-mix(in srgb, #e8590c ' + (22 + i * 15) + '%, #fff)';
+  function hbar(arr) {
+    const tot = arr.reduce((a, b) => a + b, 0) || 1, d = document.createElement('div'); d.className = 'px-hxbar';
+    arr.forEach((v, i) => { if (!v) return; const p = v / tot * 100, s = document.createElement('i'); s.style.flex = String(v); s.style.background = shade(i); s.title = BK[i][2] + ': ' + v + ' дог. (' + n1.format(p) + ' %)'; if (p >= 14) s.textContent = Math.round(p) + '%'; if (i >= 3) s.style.color = '#fff'; d.append(s); });
+    return d;
+  }
+  const bucket = (h) => BK.findIndex((b) => h >= b[0] && h <= b[1]);
+  const tcBk = [[1, 1, '1'], [2, 2, '2'], [3, 5, '3–5'], [6, 10, '6–10'], [11, 25, '11–25'], [26, 50, '26–50'], [51, 1e9, '51 и больше']];
+  function drawHx() {
+    const sec = $('holdx'); if (!sec || sec.hidden) return;
+    const P = dash.params(), view = P.view || 'С брокерами', period = P.period || FULL, project = P.project || ALL, from = P.from || '', to = P.to || '', isC = period === CUSTOM;
+    const DE = dash.data('deals'); if (DE.status !== 'ok') return;
+    $('hx-mode').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === st.hx)));
+    const base = DE.data.filter((r) => r.view === view && (project === ALL || r.project === project) && (isC ? r.sign_date >= from && r.sign_date <= to : period === FULL || r.period === period) && Number(r.touches) > 0 && r.hold_days !== '' && !isNaN(Number(r.hold_days))).map((r) => ({ r, h: Number(r.hold_days), t: Number(r.touches) }));
+    const leg = $('hx-leg'); leg.replaceChildren();
+    BK.forEach((b, i) => { const s = document.createElement('span'); const ic = document.createElement('i'); ic.style.setProperty('--px-g', shade(i)); s.append(ic, b[2]); leg.append(s); });
+    // по каналам
+    const groups = new Map();
+    const add = (c, x) => { if (!c) return; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(x); };
+    base.forEach((x) => { if (st.hx === 'first') add(x.r.first_ch, x); else if (st.hx === 'last') add(x.r.last_ch, x); else { const seen = new Set(String(x.r.shares || '').split('|').filter(Boolean).map((p) => p.slice(0, p.lastIndexOf(':')))); seen.forEach((c) => add(c, x)); } });
+    const tb = $('hx-ch').tBodies[0]; tb.replaceChildren();
+    const list = [...groups.entries()].filter(([, a]) => a.length >= 5).sort((a, b) => b[1].length - a[1].length).slice(0, 14);
+    $('hx-ch-sub').textContent = (st.hx === 'first' ? 'Канал первого касания' : st.hx === 'last' ? 'Канал последнего касания' : 'Любой канал цепочки') + ' · всего договоров с касаниями: ' + nf.format(base.length);
+    list.forEach(([c, a]) => {
+      const tr = document.createElement('tr'); const c0 = td(tr, '', 'l'); const dot = document.createElement('i'); dot.className = 'px-hxdot'; dot.style.background = colOf(c); c0.append(dot, document.createTextNode(c));
+      td(tr, nf.format(a.length)); const c2 = td(tr, '', 'l'); const cnt = BK.map(() => 0); a.forEach((x) => { cnt[bucket(x.h)]++; }); c2.append(hbar(cnt));
+      td(tr, n1.format(median(a.map((x) => x.h))) + ' дн.'); tb.append(tr);
+    });
+    if (!list.length) { const tr = document.createElement('tr'); td(tr, 'Недостаточно данных: нужно от 5 договоров в строке', 'l'); tb.append(tr); }
+    // по касаниям
+    const tb2 = $('hx-tc').tBodies[0]; tb2.replaceChildren();
+    tcBk.forEach(([lo, hi, lab]) => {
+      const a = base.filter((x) => x.t >= lo && x.t <= hi); if (a.length < 5) return;
+      const tr = document.createElement('tr'); td(tr, lab, 'l'); td(tr, nf.format(a.length)); const c2 = td(tr, '', 'l'); const cnt = BK.map(() => 0); a.forEach((x) => { cnt[bucket(x.h)]++; }); c2.append(hbar(cnt));
+      td(tr, n1.format(median(a.map((x) => x.h))) + ' дн.'); tb2.append(tr);
+    });
+  }
+  const run = () => { drawBm(); drawHx(); };
+  dash.onData(run); window.addEventListener('psk-tab', run);
+})();
+(() => {
+  const FULL = 'Весь период', CUSTOM = 'Произвольный период', ALL = 'Все проекты';
+  const nf = new Intl.NumberFormat('ru-RU'), n1 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
+  const $ = (id) => document.getElementById(id);
+  const rub = (x) => Math.abs(x) >= 1e9 ? n1.format(x / 1e9) + ' млрд ₽' : Math.abs(x) >= 1e6 ? n1.format(x / 1e6) + ' млн ₽' : nf.format(Math.round(x)) + ' ₽';
+  const OTH = new Set(['Прямой трафик', 'Сервисные расходы', 'Реферальный трафик', 'Другая реклама', 'Прочие каналы', 'Другое']);
+  const td = (tr, t, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = t; tr.append(c); return c; };
+  const parse = (r) => { const m = new Map(); String(r.shares || '').split('|').filter(Boolean).forEach((x) => { const i = x.lastIndexOf(':'); m.set(x.slice(0, i), Number(x.slice(i + 1)) || 0); }); return m; };
+  function bars(el, rows, color) {
+    el.replaceChildren(); const max = Math.max(1, ...rows.map((r) => r.n));
+    if (!rows.length) { const p = document.createElement('p'); p.className = 'px-sub'; p.textContent = 'Нет данных'; el.append(p); return; }
+    rows.forEach((r) => { const row = document.createElement('div'); row.className = 'px-hb-row'; const lab = document.createElement('span'); lab.textContent = r.label; lab.title = r.label; const tr = document.createElement('div'); tr.className = 'px-track'; const f = document.createElement('div'); f.className = 'px-fill'; f.style.width = (r.n / max * 100) + '%'; f.style.setProperty('--px-c', color); tr.append(f); const v = document.createElement('span'); v.className = 'px-hb-v'; v.textContent = r.text; row.append(lab, tr, v); el.append(row); });
+  }
+  function draw() {
+    const sec = $('other'); if (!sec || sec.hidden) return;
+    const P = dash.params(), view = P.view || 'С брокерами', period = P.period || FULL, project = P.project || ALL, from = P.from || '', to = P.to || '', isC = period === CUSTOM;
+    const DE = dash.data('deals'); if (DE.status !== 'ok') return;
+    const all = DE.data.filter((r) => r.view === view && (project === ALL || r.project === project) && (isC ? r.sign_date >= from && r.sign_date <= to : period === FULL || r.period === period));
+    const flag = (r) => { if (!(Number(r.touches) > 0)) return 'Нет касаний в Smartis'; const m = parse(r); let o = 0, best = 0, bc = ''; m.forEach((v, c) => { if (OTH.has(c)) o += v; if (v > best) { best = v; bc = c; } }); return o >= 0.5 && o >= best ? 'Преобладает «' + (OTH.has(bc) ? bc : 'прочее') + '»' : ''; };
+    const rows = all.map((r) => ({ r, why: flag(r) })), oth = rows.filter((x) => x.why);
+    const amt = (a) => a.reduce((s, x) => s + Number((x.r || x).amount || 0), 0);
+    const nt = oth.filter((x) => x.why.startsWith('Нет')), tiles = $('ot-tiles'); tiles.replaceChildren();
+    const tile = (lab, big, note) => { const t = document.createElement('div'); t.className = 'px-tile'; const l = document.createElement('span'); l.className = 'px-lab'; l.textContent = lab; const b = document.createElement('span'); b.className = 'px-big'; b.textContent = big; const n = document.createElement('span'); n.className = 'px-note'; n.textContent = note; t.append(l, b, n); tiles.append(t); };
+    tile('Не размечено', nf.format(oth.length), all.length ? n1.format(oth.length / all.length * 100) + ' % от ' + nf.format(all.length) + ' договоров' : '');
+    tile('Сумма', rub(amt(oth)), amt(all) ? n1.format(amt(oth) / amt(all) * 100) + ' % суммы договоров' : '');
+    tile('Нет касаний в Smartis', nf.format(nt.length), rub(amt(nt)));
+    tile('Прямой трафик и прочее', nf.format(oth.length - nt.length), rub(amt(oth) - amt(nt)));
+    const fo = all.filter((r) => r.first_ch === 'Другое'); tile('Первый клик не определён', nf.format(fo.length), rub(amt(fo)) + ': касания есть, но Smartis не нашёл клика («Другое»). В цепочках чаще брокеры и показы медийки');
+    const srcAll = new Map(), srcOth = new Map(); rows.forEach((x) => { const k = x.r.lead_source || '(источник не заполнен)'; srcAll.set(k, (srcAll.get(k) || 0) + 1); if (x.why) srcOth.set(k, (srcOth.get(k) || 0) + 1); });
+    bars($('ot-src'), [...srcOth.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([k, n]) => ({ label: k, n, text: nf.format(n) + ' · ' + Math.round(n / srcAll.get(k) * 100) + ' % источника' })), 'var(--cds-chart-muted)');
+    const pj = new Map(), pjO = new Map(); rows.forEach((x) => { const k = x.r.project; pj.set(k, (pj.get(k) || 0) + 1); if (x.why) pjO.set(k, (pjO.get(k) || 0) + 1); });
+    bars($('ot-prj'), [...pj.keys()].filter((k) => pj.get(k) >= 5).map((k) => ({ label: k, n: (pjO.get(k) || 0) / pj.get(k), cnt: pjO.get(k) || 0 })).sort((a, b) => b.n - a.n).map((x) => ({ label: x.label, n: x.n, text: Math.round(x.n * 100) + ' % · ' + x.cnt + ' из ' + pj.get(x.label) })), 'var(--px-ad)');
+    $('ot-dsum').textContent = 'Договоры без понятного источника (' + nf.format(oth.length) + ')';
+    const db = $('ot-dtable').tBodies[0]; db.replaceChildren();
+    oth.slice().sort((a, b) => String(b.r.sign_date).localeCompare(String(a.r.sign_date))).slice(0, 300).forEach((x) => {
+      const r = x.r, tr = document.createElement('tr'), c0 = td(tr, '', 'l');
+      if (r.deal_id && r.link && /^https:\/\/bitrix\.psk-info\.ru\//.test(r.link)) { const a = document.createElement('a'); a.className = 'px-dl'; a.href = r.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.deal_id; c0.append(a); } else c0.textContent = r.deal_id || '—';
+      td(tr, r.project, 'l'); td(tr, r.sign_date ? r.sign_date.split('-').reverse().join('.') : '—', 'l'); td(tr, rub(Number(r.amount))); td(tr, x.why, 'l'); td(tr, r.lead_source || '—', 'l');
+      td(tr, [...parse(r).entries()].sort((a, b) => b[1] - a[1]).map(([c, v]) => c + ' ' + Math.round(v * 100) + ' %').join(' · ') || '—', 'l wrap'); db.append(tr);
+    });
+  }
+  dash.onData(draw); window.addEventListener('psk-tab', draw);
+})();
+
+(() => {
   const $ = (id) => document.getElementById(id);
   const TABS = {
-    all: { view: 'С брокерами', secs: ['results', 'projects', 'channels', 'journey', 'chainb', 'deals'], note: 'Все сделки, кроме технических (Болознева, Долгих, Агафонова). Везде без кладовок и паркингов.' },
+    all: { view: 'С брокерами', secs: ['results', 'bymonth', 'channels', 'journey', 'holdx', 'chainb', 'other', 'projects', 'deals'], note: 'Все сделки, кроме технических (Болознева, Долгих, Агафонова). Везде без кладовок и паркингов.' },
     digital: { view: 'Без брокеров', secs: ['i-eff', 'i-media', 'chainb', 'i-deals'], note: 'Только сделки с интернета, без брокерских договоров: эффективность каналов, медийка и договоры с медийными касаниями. Атрибуция «Линейная с post-view».' },
-    brokers: { view: 'Только брокеры', secs: ['results', 'i-eff', 'i-broker', 'i-media', 'projects', 'journey', 'chainb', 'deals'], note: 'Сделки брокеров: созданные брокерскими менеджерами или пришедшие через брокерский канал. Видно, какие касания были до брокера и после.' },
+    brokers: { view: 'Только брокеры', secs: ['results', 'bymonth', 'i-eff', 'i-broker', 'i-media', 'journey', 'holdx', 'chainb', 'other', 'projects', 'deals'], note: 'Сделки брокеров: созданные брокерскими менеджерами или пришедшие через брокерский канал. Видно, какие касания были до брокера и после.' },
     offline: { view: 'С брокерами', secs: ['o-eff', 'o-chain'], note: 'Оффлайн-реклама: наружка, пресса, радио, ТВ, листовки, электрички, PR, «забор», визиты в офис. Атрибуция «Линейная с post-view».' },
     method: { view: null, secs: ['method', 'i-method'], note: 'Как считаются цифры на всех вкладках: источники, фильтры, модели атрибуции и ограничения данных.' },
   };
@@ -1967,6 +2172,7 @@ th:nth-last-child(-n+3) .px-ms-pop { left: auto; right: 0; }
     $('view-note').textContent = T.note;
     ALLSECS.forEach((s) => { const i = T.secs.indexOf(s.id); s.hidden = i < 0; s.style.order = i < 0 ? 99 : i; });
     document.querySelectorAll('#i-eff .px-big[data-field="budget"], #i-eff .px-big[data-field="drr"], #i-eff .px-big[data-field="cpo"], #i-eff .px-big[data-field="cpl_target"]').forEach((e) => { const tl = e.closest('.px-tile'); if (tl) tl.hidden = t === 'brokers'; });
+    const tn = $('t-norm'); if (tn) tn.hidden = t === 'brokers';
     if (t === 'brokers') { const es = document.querySelector('#i-eff .px-sub'); if (es && !/не делится/.test(es.textContent)) es.textContent += ' Рекламный бюджет между брокерскими и остальными договорами не делится, поэтому ДРР и CPO здесь не считаются: они на вкладке «Все сделки».'; }
     const dv = $('dig-view'); if (dv) dv.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === want)));
     $('takeaway').hidden = t === 'digital' || t === 'offline' || t === 'method';
